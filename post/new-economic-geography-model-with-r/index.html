@@ -684,16 +684,14 @@ start_t &lt;- 1.5
 step_t &lt;- 0.01
 </code></pre>
 <p>The model containts 6 non-linear equations, namely:</p>
-<p>$$
-\begin{align}
-Y_1 &amp; = \phi_1(1-\gamma)L + \lambda_1 \gamma LW_1 \<br>
-Y_2 &amp; = \phi_2(1-\gamma)L + (1-\lambda_1) \gamma LW_2 \<br>
-W_1 &amp;= \rho \beta^{-\rho}\left(\frac{\delta}{\alpha(\epsilon-1)}\right)^{1/\epsilon} \left(Y_1 I_1^{\epsilon-1} + T^{1-\epsilon}Y_2 I_2^{\epsilon-1}\right)^{1/\epsilon}\<br>
-W_2 &amp;= \rho \beta^{-\rho}\left(\frac{\delta}{\alpha(\epsilon-1)}\right)^{1/\epsilon} \left(T^{1-\epsilon}Y_1 I_1^{\epsilon-1} + Y_2 I_2^{\epsilon-1}\right)^{1/\epsilon}\<br>
-I_1 &amp;= \left(\frac{\gamma L}{\alpha \epsilon} \right)^{1/(1-\epsilon)}\left(\frac{\beta}{\rho}\right) \left(\lambda W_1^{1-\epsilon} + (1-\lambda)T^{1-\epsilon} W_2^{1-\epsilon}\right)^{1/(1-\epsilon)}\<br>
-I_2 &amp;= \left(\frac{\gamma L}{\alpha \epsilon} \right)^{1/(1-\epsilon)}\left(\frac{\beta}{\rho}\right) \left(\lambda T^{1-\epsilon} W_1^{1-\epsilon} + (1-\lambda) W_2^{1-\epsilon}\right)^{1/(1-\epsilon)}\<br>
-\end{align}
-$$</p>
+<p>\begin{aligned}
+Y_1 &amp;= \phi_1(1-\gamma)L + \lambda_1 \gamma LW_1\\\<br>
+Y_2 &amp;= \phi_2(1-\gamma)L + (1-\lambda_1) \gamma LW_2\\\<br>
+W_1 &amp;= \rho \beta^{-\rho}\left(\frac{\delta}{\alpha(\epsilon-1)}\right)^{1/\epsilon} \left(Y_1 I_1^{\epsilon-1} + T^{1-\epsilon}Y_2 I_2^{\epsilon-1}\right)^{1/\epsilon}\\\<br>
+W_2 &amp;= \rho \beta^{-\rho}\left(\frac{\delta}{\alpha(\epsilon-1)}\right)^{1/\epsilon} \left(T^{1-\epsilon}Y_1 I_1^{\epsilon-1} + Y_2 I_2^{\epsilon-1}\right)^{1/\epsilon}\\\<br>
+I_1 &amp;= \left(\frac{\gamma L}{\alpha \epsilon} \right)^{1/(1-\epsilon)}\left(\frac{\beta}{\rho}\right) \left(\lambda W_1^{1-\epsilon} + (1-\lambda)T^{1-\epsilon} W_2^{1-\epsilon}\right)^{1/(1-\epsilon)}\\\<br>
+I_2 &amp;= \left(\frac{\gamma L}{\alpha \epsilon} \right)^{1/(1-\epsilon)}\left(\frac{\beta}{\rho}\right) \left(\lambda T^{1-\epsilon} W_1^{1-\epsilon} + (1-\lambda) W_2^{1-\epsilon}\right)^{1/(1-\epsilon)}\\\<br>
+\end{aligned}</p>
 <p>The first two equations denote  total regional income for regional 1 and 2, equation 3 and 4 give the regional wages for both regions and the last two equations determine regional price indices.</p>
 <p>Thus, the key optimalisation procedure looks as follows:</p>
 <pre><code class="language-r">################################################################

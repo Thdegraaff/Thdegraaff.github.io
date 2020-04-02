@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.thomasdegraaff.nl/categories/</loc>
+    <lastmod>2020-04-02T16:08:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.thomasdegraaff.nl/post/</loc>
+    <lastmod>2020-04-02T16:08:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.thomasdegraaff.nl/categories/publication/</loc>
+    <lastmod>2020-04-02T16:08:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.thomasdegraaff.nl/post/2020-04-02-skew-normal/</loc>
+    <lastmod>2020-04-02T16:08:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.thomasdegraaff.nl/categories/publications/</loc>
+    <lastmod>2020-04-02T16:08:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.thomasdegraaff.nl/</loc>
+    <lastmod>2020-04-02T16:08:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.thomasdegraaff.nl/publication_types/2/</loc>
     <lastmod>2020-02-17T14:30:23+00:00</lastmod>
   </url>
@@ -33,11 +63,6 @@
   </url>
   
   <url>
-    <loc>https://www.thomasdegraaff.nl/</loc>
-    <lastmod>2020-02-17T14:30:23+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.thomasdegraaff.nl/authors/jessie-bakens/</loc>
     <lastmod>2020-01-01T00:00:00+00:00</lastmod>
   </url>
@@ -48,22 +73,7 @@
   </url>
   
   <url>
-    <loc>https://www.thomasdegraaff.nl/categories/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.thomasdegraaff.nl/post/2019-01-10-informationtechnology/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.thomasdegraaff.nl/post/</loc>
-    <lastmod>2019-01-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.thomasdegraaff.nl/categories/publication/</loc>
     <lastmod>2019-01-10T00:00:00+00:00</lastmod>
   </url>
   

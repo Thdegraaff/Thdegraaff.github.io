@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>publications | Thomas de Graaff</title>
+    <link>https://www.thomasdegraaff.nl/categories/publications/</link>
+      <atom:link href="https://www.thomasdegraaff.nl/categories/publications/index.xml" rel="self" type="application/rss+xml" />
+    <description>publications</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Thomas de Graaff, 2020</copyright><lastBuildDate>Thu, 02 Apr 2020 16:08:00 +0200</lastBuildDate>
+    <image>
+      <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
+      <title>publications</title>
+      <link>https://www.thomasdegraaff.nl/categories/publications/</link>
+    </image>
+    
+    <item>
+      <title>Publication in Annals of Regional Science</title>
+      <link>https://www.thomasdegraaff.nl/post/2020-04-02-skew-normal/</link>
+      <pubDate>Thu, 02 Apr 2020 16:08:00 +0200</pubDate>
+      <guid>https://www.thomasdegraaff.nl/post/2020-04-02-skew-normal/</guid>
+      <description>&lt;p&gt;I have a new publication in the &lt;strong&gt;Annals of Regional Science&lt;/strong&gt;, titled: &lt;em&gt;On the&lt;/em&gt;
+&lt;em&gt;estimation of spatial stochastic frontier models: an alternative skew-normal&lt;/em&gt;
+&lt;em&gt;approach&lt;/em&gt;. It is actually part of a special issue with guest editors Rachel
+Guillain and Julie Le Gallo.&lt;/p&gt;
+&lt;p&gt;The full publication can be found here: 
+&lt;a href=&#34;https://link.springer.com/article/10.1007/s00168-019-00928-9?wt%5Fmc=Internal.Event.1.SEM.ArticleAuthorAssignedToIssue&amp;amp;utm%5Fsource=ArticleAuthorAssignedToIssue&amp;amp;utm%5Fmedium=email&amp;amp;utm%5Fcontent=AA%5Fen%5F06082018&amp;amp;ArticleAuthorAssignedToIssue%5F20200328&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;publication&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -5,7 +5,7 @@
     <link>https://www.thomasdegraaff.nl/</link>
       <atom:link href="https://www.thomasdegraaff.nl/index.xml" rel="self" type="application/rss+xml" />
     <description>Thomas de Graaff</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Thomas de Graaff, 2020</copyright><lastBuildDate>Thu, 02 Apr 2020 16:08:00 +0200</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Thomas de Graaff, 2021</copyright><lastBuildDate>Thu, 02 Apr 2020 16:08:00 +0200</lastBuildDate>
     <image>
       <url>img/map[gravatar:%!s(bool=false) shape:circle]</url>
       <title>Thomas de Graaff</title>
@@ -2010,6 +2010,31 @@ legend entries={45$^\circ$ line,PP line, MM line}
       <pubDate>Fri, 01 Jan 1999 00:00:00 +0000</pubDate>
       <guid>https://www.thomasdegraaff.nl/publication/de-graaff-1999-misc/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.thomasdegraaff.nl/post/2021-04-02-stated-choice/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.thomasdegraaff.nl/post/2021-04-02-stated-choice/</guid>
+      <description>&lt;h1 id=&#34;stated-choice-experiments&#34;&gt;Stated choice experiments&lt;/h1&gt;
+&lt;p&gt;This is a more static and general post and deals with all sorts of materials
+considering &lt;strong&gt;stated choice experiments&lt;/strong&gt; to help master students in conducting
+their analysis for their thesis. In the last year(s), we developed all sorts of
+materials, especially in the form of knowledge clips, that may help students in
+setting up the &lt;strong&gt;design&lt;/strong&gt;, in their &lt;strong&gt;estimations&lt;/strong&gt;, and in &lt;strong&gt;interpreting&lt;/strong&gt;
+their results.&lt;/p&gt;
+&lt;h2 id=&#34;knowledge-clips&#34;&gt;Knowledge clips&lt;/h2&gt;
+&lt;h2 id=&#34;background-material&#34;&gt;Background material&lt;/h2&gt;
+&lt;p&gt;Paul Koster refers in his knowledge clip to the work of Sanko, Daly and Kroes (2002).
+You can find this paper 
+&lt;a href=&#34;docs/sanko.pdf&#34;&gt;here&lt;/a&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;previous-theses&#34;&gt;previous theses&lt;/h2&gt;
+&lt;p&gt;Already many theses have been written using Stated preference techniques. Below
+are some we do find of good quality and that also display the variation in topics.
+These theses should only be used for inspiration. Do not copy their methodological approach!&lt;/p&gt;
+</description>
     </item>
     
   </channel>

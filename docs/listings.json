@@ -18,5 +18,12 @@
       "/research/articles/bernasco-2016/index.html",
       "/research/articles/wang-2016/index.html"
     ]
+  },
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/stated_choice/index.html",
+      "/posts/krugman_neg/index.html"
+    ]
   }
 ]

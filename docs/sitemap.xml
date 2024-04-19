@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://thomasdegraaff.nl/index.html</loc>
-    <lastmod>2024-04-19T10:51:08.679Z</lastmod>
+    <lastmod>2024-04-19T15:09:46.865Z</lastmod>
   </url>
   <url>
     <loc>http://thomasdegraaff.nl/research/index.html</loc>
@@ -27,5 +27,17 @@
   <url>
     <loc>http://thomasdegraaff.nl/research/articles/donovan-2024/index.html</loc>
     <lastmod>2024-04-19T08:29:10.665Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/posts/stated_choice/index.html</loc>
+    <lastmod>2021-05-04T06:55:40.000Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/posts/index.html</loc>
+    <lastmod>2024-04-19T15:05:57.136Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/posts/krugman_neg/index.html</loc>
+    <lastmod>2024-04-19T15:10:32.382Z</lastmod>
   </url>
 </urlset>

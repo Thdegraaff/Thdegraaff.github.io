@@ -9,7 +9,7 @@ date-format: "MMMM YYYY"
 title-block-banner: true
 
 # Default for table of contents
-toc: true
+toc: false
 toc-title: Contents
 toc-location: left
 

@@ -22,6 +22,7 @@ listing:
 format: 
   html: 
     page-layout: full
+    toc: false
 
 header-includes: >
   <link rel="stylesheet" href="../assets/listing-default.css">

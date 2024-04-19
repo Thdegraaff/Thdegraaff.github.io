@@ -1,0 +1,69 @@
+project:
+  type: website
+  resources:
+    - "data/*"
+
+website:
+  title: "Thomas de Graaff"
+  site-url: http://thomasdegraaff.nl/
+  description: "A spatial economist employed at the department of Spatial Economics of VU University Amsterdam"
+  favicon: data/img/favicon.png
+  page-navigation: true
+  
+  navbar:
+    logo: data/img/favicon.png
+    pinned: true
+    right:
+      - text: About me
+        aria-label: "About Me"
+        href: about/index.qmd
+      - text: Posts
+        aria-label: "My musings"
+        href: posts/index.qmd
+      - text: Talks
+        aria-label: "Talks"
+        href: talk/index.qmd  
+      - text: Research
+        aria-label: "Research"
+        href: research/index.qmd
+
+  page-footer:
+    border: false
+    left: >-
+      &#169; 2014--2024 Thomas de Graaff &#8729; Made with [Quarto](https://quarto.org)
+    center: |
+      <a class="link-dark me-1" href="https://github.com/thdegraaff" title="github" target="_blank" rel="noopener">{{< fa brands github >}}</a>
+      <a class="link-dark me-1" href="https://orcid.org/0000-0002-1782-9742" title="orcid" target="_blank" rel="noopener">{{< ai orcid >}}</a>
+      <a class="link-dark me-1" href="https://scholar.google.com/citations?user=q46f0_YAAAAJ&hl=nl&inst=4393003693960974403&oi=ao" title="Google Scholar" target="_blank"rel="noopener">{{< ai google-scholar >}}</a>
+      <a class="link-dark me-1" href="https://www.linkedin.com/in/thomas-de-graaff-1661636/" title="LinkedIn" target="_blank" rel="noopener">{{< fa brands linkedin >}}</a>
+      <a class="link-dark me-1" href="https://www.researchgate.net/profile/Thomas-Graaff" title="orcid" target="_blank" rel="noopener">{{< ai researchgate >}}</a>
+    right:
+      - text: "License"
+        aria-label: "License Details"
+        href: license.qmd
+    #  # Licence: [CC BY-NC-SA](https://creativecommons.org/licenses/by-sa/4.0/){{< fa brands creative-commons >}} {{< fa brands creative-commons-by  >}} {{< fa brands creative-commons-sa >}}
+
+format:
+  html:
+    theme:
+      light:
+        - cosmo
+        - assets/thomas-theme-light.scss
+#         # - assets/silvia/colors-light.scss
+#         # - assets/silvia/fonts.scss
+#      dark: 
+#        - darkly
+#       #   - assets/silvia-theme-dark.scss
+#       #   - assets/silvia/colors-dark.scss
+#     # highlight-style:
+#       # light: assets/silvia/a11y-light.theme
+#       # dark: assets/silvia/a11y-dark.theme
+#     code-link: true
+#     pagetitle: "{{< meta title >}} | Thomas de Graaff"
+# 
+execute:
+  freeze: auto
+  
+bibliography: references.bib
+# 
+# #include-in-header: assets/umami.html

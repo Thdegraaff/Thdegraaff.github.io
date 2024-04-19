@@ -1,0 +1,37 @@
+---
+title: "Research" 
+date-format: MMM, YYYY
+description: |
+  This is home for my research publications, working papers, etc., each linked with accompanying preprints, data, bibliographuc material and/or news pieces.
+listing: 
+  id: articles
+  contents: 
+    - "articles/*/index.qmd"
+    - "articles/*/index.markdown"
+    - "articles/*/index.md"
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [title, description, date, categories, author]
+  image-align: left
+  # image-height: 10em
+  page-size: 30
+  
+format: 
+  html: 
+    page-layout: full
+
+header-includes: >
+  <link rel="stylesheet" href="../assets/listing-default.css">
+resources:
+  - ../assets/listing-default.css
+  
+title-block-banner: ./featured.jpg  
+---
+
+## Journal articles
+
+:::{#articles}
+:::

@@ -1,0 +1,30 @@
+---
+title: "Cultural Diversity and Cultural Distance as Choice Determinants of Migration Destination"
+date: 2016-01-01
+date-format: MMM, YYYY
+author: 
+- Wang Zhiling
+- Thomas de Graaff
+- Peter Nijkamp
+categories: 
+- Migration
+- Cultural diversity
+- Cultural distance
+- Destination choice
+- Sorting model
+abstract: ''
+description: "*Spatial Economic Analysis*"
+links:
+  - icon: file-richtext-fill
+    name: Publication
+    url: http://dx.doi.org/10.1080/17421772.2016.1102956
+featured: yes
+---
+
+## Abstract
+
+This study analyses the impact of cultural composition on regional attractiveness from the perspective of international migrant sorting behaviour on a European regional NUTS1 level. We use an attitudinal survey to quantify cultural distances between natives and immigrants in the region concerned,and estimate the migrants’ varying preferences for both cultural diversity and cultural distance. To account for regional unobserved heterogeneity, our econometric analysis employs artificial instrumental variables,as developed by Bayer et al., [2004a. An equilibrium model of sorting in an urban housing market. NBER no. 10865]. The main conclusions are twofold. On the one hand, cultural diversity increases regional attractiveness. On the other hand, average cultural distance greatly weakens regional attractiveness
+
+## Figure
+
+![](featured.png)

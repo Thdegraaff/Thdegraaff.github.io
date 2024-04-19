@@ -1,0 +1,39 @@
+---
+title: "Social Interactions and Crime Revisited: An Investigation Using Individual Offender Rates"
+date: 2017-10-01
+date-format: MMM, YYYY
+author: 
+- Wim Bernasco
+- Thomas de Graaff
+- Jan Rouwendal
+- Wouter Steenbeek
+categories:
+  - Crime 
+  - Neighborhoods
+  - Social interaction
+  - Sorting model
+description: "*Review of Economics and Statistics*"
+abstract: ''
+links:
+  - icon: file-richtext-fill
+    name: Publication
+    url: https://doi-org.vu-nl.idm.oclc.org/10.1162/REST_a_00656
+---
+
+## Abstract
+
+Using data on the age, sex, ethnicity, and criminal involvement
+of more than 14 million residents of all ages residing in approximately
+4,000 Dutch neighborhoods, we test if an individual’s criminal involvement
+is affected by the proportion of criminals living in his or her residential
+neighborhood. We develop a binomial discrete choice model for criminal
+involvement and estimate it on individual data. We control for both the
+endogeneity that may be related to unobserved neighborhood characteristics
+and for sorting behavior. We find significant social interaction effects, but
+our findings do not imply multiple equilibria or large multiplier effects
+
+## Illustration
+
+We use a sorting model to map propensity of crime to expected crime propensity yielding multiple equilibria (see below). 
+
+![Multiple equilibria for the propensity of crime](featured.png)

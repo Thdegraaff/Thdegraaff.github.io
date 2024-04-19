@@ -1,0 +1,28 @@
+---
+title: "Unraveling urban advantages—A meta-analysis of agglomeration economies"
+date: 2024-01-01
+date-format: MMM, YYYY
+author: 
+- Stuart Donovan
+- Thomas de Graaff
+- Henri L. F. de Groot
+- Carl C. Koopman
+categories:
+  - Agglomeration 
+  - Cities
+  - Meta-analysis
+  - Productivity
+  - Urbanization
+description: "*Journal of Economic Surveys*"
+abstract: ''
+links:
+  - icon: file-richtext-fill
+    name: Publication
+    url: https://doi.org/10.1111/joes.12543
+---
+
+## Abstract
+
+A large body of empirical literature considers the productive advantages of cities, or “agglomeration economies.” We present a meta-analysis of this literature that draws on 6684 agglomeration elasticities from294 studies spanning 54 countries and six decades. We find that elasticities are likely to lie in the range 0.015–0.039 and, like earlier reviews, that the controls enabled by detailed data are associated with smaller estimates. We make five main contributions: First, we find evidence that publication selection imparts a positive bias to the literature; second, we adopt novel methods that tend to yield more precise parameter estimates than conventional approaches; third, unlike earlier reviews, we do not find large differences between most countries nor an association with national income; fourth, we report new associations, for example between elasticities and the spatial scope of agglomeration, which may reflect underlying microeconomic channels; and fifth, we find evidence that elasticities for manufacturing sectors have fallen in recent decades, possibly due to lower freight costs and stricter environmental regulations.
+
+![Estimated effect sizes](featured.png)

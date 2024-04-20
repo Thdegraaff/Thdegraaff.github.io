@@ -22,6 +22,7 @@
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/research_agenda/index.html",
       "/posts/stated_choice/index.html",
       "/posts/krugman_neg/index.html"
     ]

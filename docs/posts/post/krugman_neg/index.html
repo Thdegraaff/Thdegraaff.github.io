@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Thomas de Graaf">
-<meta name="dcterms.date" content="2021-04-02">
+<meta name="dcterms.date" content="2015-10-05">
 
-<title>Thomas de Graaff - Stated choice experiments</title>
+<title>Thomas de Graaff - Krugman’s Increasing Returns and Economic Geography</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,29 +21,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../data/img/favicon.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../data/img/favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,20 +106,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../data/img/favicon.png" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../data/img/favicon.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Thomas de Graaff</span>
     </a>
   </div>
@@ -97,19 +159,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about/index.html"> 
+    <a class="nav-link" href="../../../about/index.html"> 
 <span class="menu-text">About me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts/index.html"> 
+    <a class="nav-link" href="../../../posts/index.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../talk/index.qmd"> 
+    <a class="nav-link" href="../../../talk/index.qmd"> 
 <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../research/index.html"> 
+    <a class="nav-link" href="../../../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
 </ul>
@@ -122,29 +184,24 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns">
 <div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
-<h1 class="title">Stated choice experiments</h1>
+<h1 class="title">Krugman’s Increasing Returns and Economic Geography</h1>
 
 
     <div class="quarto-categories">
-        <div class="quarto-category">Teaching</div>
-        <div class="quarto-category">Reproducability</div>
+        <div class="quarto-category">Interaction</div>
+        <div class="quarto-category">LaTeX</div>
+        <div class="quarto-category">Education</div>
       </div>
   </div>
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Thomas de Graaf </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 2, 2021</p>
+      <p class="date">October 5, 2015</p>
     </div>
   </div>
   
@@ -156,20 +213,18 @@ ul.task-list li input[type="checkbox"] {
 
 </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-this-about" id="toc-what-is-this-about" class="nav-link active" data-scroll-target="#what-is-this-about">What is this about?</a>
-  <ul class="collapse">
-  <li><a href="#knowledge-clips" id="toc-knowledge-clips" class="nav-link" data-scroll-target="#knowledge-clips">Knowledge clips</a></li>
-  <li><a href="#background-material" id="toc-background-material" class="nav-link" data-scroll-target="#background-material">Background material</a></li>
-  <li><a href="#previous-theses" id="toc-previous-theses" class="nav-link" data-scroll-target="#previous-theses">Previous theses</a></li>
-  </ul></li>
+  <li><a href="#drawing-the-diagram-of-a-stylized-version-of-krugmans-increasing-returns-and-economic-geography" id="toc-drawing-the-diagram-of-a-stylized-version-of-krugmans-increasing-returns-and-economic-geography" class="nav-link active" data-scroll-target="#drawing-the-diagram-of-a-stylized-version-of-krugmans-increasing-returns-and-economic-geography">Drawing the diagram of a stylized version of Krugman’s <em>Increasing Returns and Economic Geography</em></a></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -184,49 +239,89 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="what-is-this-about" class="level1">
-<h1>What is this about?</h1>
-<p>This is a more static and general post and deals with all sorts of materials considering <strong>stated choice experiments</strong> to help master students in conducting their analysis for their thesis. In the last year(s), we developed all sorts of materials, especially in the form of knowledge clips, that may help students in setting up the <strong>design</strong>, in their <strong>estimations</strong>, and in <strong>interpreting</strong> their results.</p>
-<section id="knowledge-clips" class="level2">
-<h2 class="anchored" data-anchor-id="knowledge-clips">Knowledge clips</h2>
-<p>Paul Koster has made several clip on stated choice experiments</p>
-<ul>
-<li><a href="https://video.vu.nl/media/Choice+experiments/1_ej62gyoc">An introduction</a></li>
-<li><a href="https://video.vu.nl/media/Statistical+design+of+choice+experiments+in+Excel/1_hksvwdnm">About designing in Excel</a></li>
-<li><a href="https://video.vu.nl/media/Behavioural+modelling+for+PACE/1_ya3kd12h">About behavioural modelling</a></li>
-</ul>
-<p>Note that Paul Koster uses a different approach than usual as he allocates points to choices, which is applicable for studying different policies. The attractive feature of this is than one can uses just OLS instead of applying a logit (as typically in the case of discerning between two or more alternatives).</p>
-<p>I myself have made some clips this year. One is on an exam question (which is about the interpretation of the outcome and possible biases that may arise in Stated Preference surveys); the other deals with working with logistics regressions and why it is so different from ordinary least squares.</p>
-<ul>
-<li><a href="https://video.vu.nl/media/vosl/1_ato8hlbc">Exam question: the value of statistical life</a></li>
-<li><a href="https://video.vu.nl/media/logistic%20regression/1_09nkiqyb">Logistis regression</a></li>
-</ul>
-<p>Vincent van de Berg also created content in the context of transport economics:</p>
-<ul>
-<li><a href="https://video.vu.nl/media/2+Stated+choice+experiments+%28empirical+transport+economics%29/1_75utwqeb">Stated choice experiments (empirical transport economics)</a></li>
-</ul>
-</section>
-<section id="background-material" class="level2">
-<h2 class="anchored" data-anchor-id="background-material">Background material</h2>
-<p>Paul Koster refers in his knowledge clip to the work of Sanko, Daly and Kroes (2002), so does Vincent van den Berg in this <a href="../../docs/SCE.pdf">lecture</a>. You can find this paper <a href="../../docs/sanko.pdf">here</a>.</p>
-</section>
-<section id="previous-theses" class="level2">
-<h2 class="anchored" data-anchor-id="previous-theses">Previous theses</h2>
-<p>Already many theses have been written using Stated preference techniques. Below are some we do find of good quality and that also display the variation in topics. These theses should only be used for inspiration. Do not copy their methodological approach!</p>
-<p>Theses:</p>
-<ul>
-<li><a href="../../docs/gerben_de_jong.pdf">Gerben de Jong (2014)</a></li>
-<li><a href="../../docs/lena_pax.pdf">Lena Pax (2020)</a></li>
-<li><a href="../../docs/de_keyser.pdf">Erika de Keyser (2020)</a></li>
-</ul>
+<section id="drawing-the-diagram-of-a-stylized-version-of-krugmans-increasing-returns-and-economic-geography" class="level2">
+<h2 class="anchored" data-anchor-id="drawing-the-diagram-of-a-stylized-version-of-krugmans-increasing-returns-and-economic-geography">Drawing the diagram of a stylized version of Krugman’s <em>Increasing Returns and Economic Geography</em></h2>
+<p>For educational purposes we teach in the second year’s course <em>regional and urban economics</em> a simplified version of Krugman’s model in his paper titled <em>Increasing Returns and Economic Geography</em>. The model we have adopted goes as follows:</p>
+<p>We consider a simplified economy with two regions and 1 (million) workers ( <span class="math inline">\(L=1\)</span> ) in total. Region 1 is inhabited by 100,000 farmers (bound to their land so immobile), while in Region 2 there are 200,000 farmers. Note that in the notation of Krugman this boils down to <span class="math inline">\(\pi_1 = 0.1\)</span> and <span class="math inline">\(\pi_2 = 0.2\)</span>. All other workers work in manufacturing. Assume now that there is a representative firm that has to choose if and in which region if would settle or that it would settle in both regions by having two branches (one in each region). The fixed costs to establish a firm (or branch) is 0.15. The transportcosts to move goods between region 1 and 2 are equal to 1 and each worker consumer consumes exactly one unit of the final product.</p>
+<p>It is now up to the student to determine the equilibria in this economy (whether stable or unstable) and identify the trade-off for the firm. Doing this the most insightful and simple way is draw the so-called PP-line and the MM-line. Using the Tikz package within Latex simplifies this enormously. The following code shows how this can be done.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Krugman91---Firm location in two regions </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">% Author: Thomas de Graaff</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">tikz, verbatim</span>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">pgfplots</span>}   <span class="co">%include other needed packages here</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[active,tightpage]{<span class="ex">preview</span>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\PreviewEnvironment</span>{tikzpicture}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength\PreviewBorder</span>{0pt}<span class="co">%</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">comment</span>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">:Title: Krugman91---Firm location in two regions </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">:Tags: Economic geography, economics, location behavior, </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">multiple equilbria</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">:Author: Thomas de Graaff</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">comment</span>}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[scale=1,thick]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{calc, intersections}   <span class="co">%allows coordinate calculations.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">% Define parameters</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\L</span>{1}               <span class="co">% Total amount of workers (normalized)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Pa</span>{0.1}            <span class="co">% Total amount of farmers in regio 1</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Pb</span>{0.2}            <span class="co">% Total amount of farmers in regio 2</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\x</span>{1}               <span class="co">% Total demand (normalized)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\F</span>{0.15}            <span class="co">% Fixed costs to set up a plant</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\t</span>{1}               <span class="co">% Transportcosts</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Fa</span>{<span class="fu">\F</span>/(<span class="fu">\t*\x</span>)}</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Fb</span>{1-<span class="fu">\F</span>/(<span class="fu">\t*\x</span>)}</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Eq</span>{(<span class="fu">\Pa</span>/(<span class="fu">\Pa+\Pb</span>)}</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Eqa</span>{((<span class="fu">\Fa</span>-<span class="fu">\Pa</span>)/(1-<span class="fu">\Pa</span>-<span class="fu">\Pb</span>)}</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Eqb</span>{((<span class="fu">\Fb</span>-<span class="fu">\Pa</span>)/(1-<span class="fu">\Pa</span>-<span class="fu">\Pb</span>)}</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Eqleft</span>{min(<span class="fu">\Fa</span>-<span class="fu">\Pa</span>, 0)}</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">\def\Eqright</span>{max(<span class="fu">\Fb</span>-(1-<span class="fu">\Pb</span>), 0)}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">axis</span>}[</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>restrict y to domain=0:<span class="fu">\L</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>samples = 1000,             </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>xmin = 0, xmax = <span class="fu">\L</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>ymin = 0, ymax = <span class="fu">\L</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>xlabel=<span class="ss">$S_m$</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>ylabel=<span class="ss">$S_p$</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>y axis line style={-}, </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>x axis line style={-},</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>grid=major,</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>legend pos=north west,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>legend entries={45<span class="ss">$^</span><span class="sc">\circ</span><span class="ss">$</span> line,PP line, MM line}</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[dotted, mark=none, domain=0:<span class="fu">\L</span>] {x};</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, red, mark=none, domain=0:<span class="fu">\L</span>] coordinates {(0,<span class="fu">\Pa</span>) (1,1-<span class="fu">\Pb</span>)};</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, blue, mark=none, domain=0:<span class="fu">\L</span>] coordinates {(0,0) (0,<span class="fu">\Fa</span>)};          </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, blue, mark=none, domain=0:<span class="fu">\L</span>] coordinates {(1,1) (1,<span class="fu">\Fb</span>)};</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, blue, mark=none, domain=0:<span class="fu">\L</span>] coordinates {(0,<span class="fu">\Fa</span>) (<span class="fu">\Fa</span>,<span class="fu">\Fa</span>)};          </span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, blue, mark=none, domain=0:<span class="fu">\L</span>] coordinates {(1,<span class="fu">\Fb</span>) (<span class="fu">\Fb</span>,<span class="fu">\Fb</span>)};</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, blue, mark=none, domain=0:<span class="fu">\L</span>] coordinates {(<span class="fu">\Fa</span>,<span class="fu">\Fa</span>) (<span class="fu">\Fb</span>,<span class="fu">\Fb</span>)};</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, mark=*, fill=red!90] coordinates {(0,<span class="fu">\Pa+</span>1000*<span class="fu">\Eqleft</span>)};            </span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, mark=*, fill=red!90] coordinates {(1,1-<span class="fu">\Pb+</span>1000*<span class="fu">\Eqright</span>)}; </span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, mark=*, fill=red!90] coordinates {(<span class="fu">\Eq</span>,<span class="fu">\Eq</span>)};</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, mark=*, fill=red!10] coordinates {(<span class="fu">\Eqa</span>,<span class="fu">\Fa</span>)};              </span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="fu">\addplot</span>[thick, mark=*, fill=red!10] coordinates {(<span class="fu">\Eqb</span>,<span class="fu">\Fb</span>)};          </span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">axis</span>}</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This produces the following diagram:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="featured.png" class="img-fluid figure-img"></p>
+<figcaption>Equilibria in a stylized version of Krugman (1991)</figcaption>
+</figure>
+</div>
+<p>Clearly, there are with this configuration 3 equilibria; two are stable and one is unstable.</p>
 
 
 </section>
-</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-de graaf2021" class="csl-entry quarto-appendix-citeas" role="listitem">
-Graaf, Thomas de. 2021. <span>“Stated Choice Experiments.”</span> April
-2, 2021. <a href="http://thomasdegraaff.nl//posts/stated_choice">http://thomasdegraaff.nl//posts/stated_choice</a>.
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2015" class="csl-entry quarto-appendix-citeas" role="listitem">
+<span>“Krugman’s Increasing Returns and Economic Geography.”</span>
+2015. October 5, 2015. <a href="http://thomasdegraaff.nl//posts/post/krugman_neg">http://thomasdegraaff.nl//posts/post/krugman_neg</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -649,7 +744,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../license.qmd">
+    <a class="nav-link" href="../../../license.qmd">
 <p>License</p>
 </a>
   </li>  

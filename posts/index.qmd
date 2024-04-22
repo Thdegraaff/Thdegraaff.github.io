@@ -2,9 +2,9 @@
 title: "Thoughts & musings" 
 listing: 
   contents: 
-    - "**/index.qmd"
-    - "**/index.markdown"
-    - "**/index.md"
+    - "post/*/index.qmd"
+    - "post/*/index.markdown"
+    - "post/*/index.md"
   sort: "date desc"
   type: default
   categories: false

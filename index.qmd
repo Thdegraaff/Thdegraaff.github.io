@@ -1,10 +1,22 @@
 ---
 title: "Welcome"
 date-format: MMM, YYYY
+
 listing:
-  - id: latest-content
+  - id: latest-content-pubs
     contents: 
     - /research/articles
+    sort: "date desc"
+    type: grid
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    max-items: 3
+    feed: false
+    
+  - id: latest-content-posts
+    contents: 
+    - /posts/post
     sort: "date desc"
     type: grid
     categories: false
@@ -16,12 +28,7 @@ listing:
 toc: false    
 ---
 
-## Thomas de Graaff
-
 I am a **spatial economist** employed at the department of Spatial Economics of the Vrije Universiteit Amsterdam. My recent research focuses on **spatial interaction** patterns (e,g., tourism, trade, migration and commuting), **reproducibility** (e.g., meta-analysis) and the application of Bayesian **multilevel** models in the domain of spatial economics. 
-
-[Learn more about me &rarr;](/about){.about-links .subtitle}
-
 
 
 <!-- latest content information -->
@@ -31,8 +38,12 @@ I am a **spatial economist** employed at the department of Spatial Economics of 
 
 ## Latest publications
 
+::: {#latest-content-pubs}
+:::
 
-::: {#latest-content}
+## Latest posts
+
+::: {#latest-content-posts}
 :::
 
 :::

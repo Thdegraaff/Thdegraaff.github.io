@@ -6,7 +6,18 @@
       "/research/articles/donovan-2024/index.html",
       "/research/articles/wang-2018-barriers/index.html",
       "/research/articles/bernasco-2016/index.html",
-      "/research/articles/wang-2016/index.html"
+      "/research/articles/wang-2016/index.html",
+      "/posts/post/research_agenda/index.html",
+      "/posts/post/stated_choice/index.html",
+      "/posts/post/krugman_neg/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/post/research_agenda/index.html",
+      "/posts/post/stated_choice/index.html",
+      "/posts/post/krugman_neg/index.html"
     ]
   },
   {
@@ -17,14 +28,6 @@
       "/research/articles/wang-2018-barriers/index.html",
       "/research/articles/bernasco-2016/index.html",
       "/research/articles/wang-2016/index.html"
-    ]
-  },
-  {
-    "listing": "/posts/index.html",
-    "items": [
-      "/posts/research_agenda/index.html",
-      "/posts/stated_choice/index.html",
-      "/posts/krugman_neg/index.html"
     ]
   }
 ]

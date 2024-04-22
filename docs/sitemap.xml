@@ -2,11 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://thomasdegraaff.nl/index.html</loc>
-    <lastmod>2024-04-20T09:22:20.462Z</lastmod>
+    <lastmod>2024-04-22T08:47:51.938Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/posts/index.html</loc>
+    <lastmod>2024-04-22T08:45:28.678Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/posts/post/research_agenda/index.html</loc>
+    <lastmod>2024-04-20T12:31:08.566Z</lastmod>
   </url>
   <url>
     <loc>http://thomasdegraaff.nl/research/index.html</loc>
-    <lastmod>2024-04-20T09:23:04.968Z</lastmod>
+    <lastmod>2024-04-22T08:39:02.865Z</lastmod>
   </url>
   <url>
     <loc>http://thomasdegraaff.nl/research/articles/Donovan-2024-housing-economics/index.html</loc>
@@ -29,19 +37,11 @@
     <lastmod>2024-04-19T08:29:10.665Z</lastmod>
   </url>
   <url>
-    <loc>http://thomasdegraaff.nl/posts/stated_choice/index.html</loc>
-    <lastmod>2021-05-04T06:55:40.000Z</lastmod>
-  </url>
-  <url>
-    <loc>http://thomasdegraaff.nl/posts/index.html</loc>
-    <lastmod>2024-04-19T15:05:57.136Z</lastmod>
-  </url>
-  <url>
-    <loc>http://thomasdegraaff.nl/posts/krugman_neg/index.html</loc>
+    <loc>http://thomasdegraaff.nl/posts/post/krugman_neg/index.html</loc>
     <lastmod>2024-04-19T15:10:32.382Z</lastmod>
   </url>
   <url>
-    <loc>http://thomasdegraaff.nl/posts/research_agenda/index.html</loc>
-    <lastmod>2024-04-20T12:31:08.566Z</lastmod>
+    <loc>http://thomasdegraaff.nl/posts/post/stated_choice/index.html</loc>
+    <lastmod>2021-05-04T06:55:40.000Z</lastmod>
   </url>
 </urlset>

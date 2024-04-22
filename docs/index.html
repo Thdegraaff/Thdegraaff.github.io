@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-latest-content .list');
+    const listingTargetEl = window.document.querySelector('#listing-latest-content-pubs .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -88,7 +88,35 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-latest-content'] = new List('listing-latest-content', options);
+    window['quarto-listings']['listing-latest-content-pubs'] = new List('listing-latest-content-pubs', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-latest-content-posts .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-latest-content-posts'] = new List('listing-latest-content-posts', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -204,17 +232,14 @@ window.Quarto = {
 </header>
 
 
-<section id="thomas-de-graaff" class="level2">
-<h2 class="anchored" data-anchor-id="thomas-de-graaff">Thomas de Graaff</h2>
 <p>I am a <strong>spatial economist</strong> employed at the department of Spatial Economics of the Vrije Universiteit Amsterdam. My recent research focuses on <strong>spatial interaction</strong> patterns (e,g., tourism, trade, migration and commuting), <strong>reproducibility</strong> (e.g., meta-analysis) and the application of Bayesian <strong>multilevel</strong> models in the domain of spatial economics.</p>
-<p><a href="./about" class="about-links subtitle">Learn more about me →</a></p>
 <!-- latest content information -->
 <div class="content-container">
 <div class="listing-block last-block">
 <!-- last-block to remove line below -->
 <section id="latest-publications" class="level2">
 <h2 class="anchored" data-anchor-id="latest-publications">Latest publications</h2>
-<div id="listing-latest-content" class="quarto-listing quarto-listing-container-grid">
+<div id="listing-latest-content-pubs" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
 <div class="g-col-1" data-index="0" data-categories="Crime,Urban development,Agglomeration economies,Amenity,New Zealand" data-listing-date-sort="1712527200000" data-listing-file-modified-sort="1713522994924" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="380">
 <a href="./research/articles/Donovan-2024-housing-economics/index.html" class="quarto-grid-link">
@@ -291,12 +316,90 @@ No matching items
 </div>
 </div>
 </section>
+<section id="latest-posts" class="level2">
+<h2 class="anchored" data-anchor-id="latest-posts">Latest posts</h2>
+<div id="listing-latest-content-posts" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Regional economics,Predicting,Causality,Theory driven approach,Data science" data-listing-date-sort="1622844000000" data-listing-file-modified-sort="1713616268566" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="43" data-listing-word-count-sort="8600">
+<a href="./posts/post/research_agenda/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="posts/post/research_agenda/featured.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Do regional economists answer the right questions?
+</h5>
+<div class="card-text listing-description">
+This position paper revolves around two main propositions; namely, (<em>i</em>) regional (or spatial) economists are very restrictive in the tool set they apply, and consequently…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Thomas de Graaff
+</div>
+<div class="listing-date">
+Jun, 2021
 </div>
 </div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Teaching,Reproducability" data-listing-date-sort="1617314400000" data-listing-file-modified-sort="1620111340000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="293">
+<a href="./posts/post/stated_choice/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Stated choice experiments
+</h5>
+<div class="card-text listing-description">
+This is a more static and general post and deals with all sorts of materials considering <strong>stated choice experiments</strong> to help master students in conducting their analysis for…<strong></strong><strong></strong><strong></strong>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Thomas de Graaf
+</div>
+<div class="listing-date">
+Apr, 2021
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="Interaction,LaTeX,Education" data-listing-date-sort="1443996000000" data-listing-file-modified-sort="1713539432382" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="430">
+<a href="./posts/post/krugman_neg/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="posts/post/krugman_neg/featured.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Krugman’s Increasing Returns and Economic Geography
+</h5>
+<div class="card-text listing-description">
+For educational purposes we teach in the second year’s course <em>regional and urban economics</em> a simplified version of Krugman’s model in his paper titled <em>Increasing Returns and…</em>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
 
-
-
+</div>
+<div class="listing-date">
+Oct, 2015
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 </section>
+</div>
+</div>
+
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

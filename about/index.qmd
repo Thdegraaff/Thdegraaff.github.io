@@ -1,3 +1,27 @@
 ---
-title: About me
+title: Thomas de Graaff
+image: Thomaspng.png
+about:
+  template: trestles
+  image-shape: round
+  links:
+    - icon: github
+      aria-label: GitHub
+      href: https://github.com/thdegraaff
+    - text: "{{< ai orcid >}}"
+      href: https://orcid.org/0000-0002-1782-9742
+    - text: "{{< ai google-scholar >}}"
+      aria-label: "Google Scholar"
+      href: https://scholar.google.com/citations?user=q46f0_YAAAAJ&hl=nl&inst=4393003693960974403&oi=ao
+    - icon: linkedin
+      aria-label: "LinkedIn"
+      href: https://www.linkedin.com/in/thomas-de-graaff-1661636/
+    - text: "{{< ai researchgate >}}"
+      aria-label: "ResearchGate"
+      href: https://www.researchgate.net/profile/Thomas-Graaff
 ---
+
+
+## Not so official biography
+
+I am a spatial and urban economist employed at the department of Spatial Economics of the Vrije Universiteit Amsterdam. My fields of professional interests include (inter)national migration, working from home, (spatial) econometrics, transport economics, and most aspects of spatial economics in general. Most recent research focusses on the impact and the use of (un-)observed heterogeneity, and I am rather interested in all sorts of applied Bayesian multilevel models. Basically, this site aims to give access to my research, code snippets and workshops and to give additional information about some of my work, thoughts and other musings.

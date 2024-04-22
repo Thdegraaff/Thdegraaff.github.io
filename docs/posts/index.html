@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="This contains all sorts of materials: including previous position papers, pieces of code, and some rest pieces of education stuff">
 
 <title>Thomas de Graaff - Thoughts &amp; musings</title>
 <style>
@@ -84,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-title','listing-author','listing-categories','listing-date','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -101,6 +102,13 @@ ul.task-list li input[type="checkbox"] {
     }
   })
   </script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(./featured.png);
+background-size: cover;
+      }
+</style>
 <link rel="stylesheet" href="../assets/listing-default.css">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -138,7 +146,7 @@ window.Quarto = {
 <body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -164,10 +172,6 @@ window.Quarto = {
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../talk/index.qmd"> 
-<span class="menu-text">Talks</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
@@ -179,31 +183,20 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
-<!-- sidebar -->
-  
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    
-<!-- main -->
-<main class="content column-page" id="quarto-document-content">
-
-<!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html -->
-<!-- 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title"> 
--->
-<!-- <header id="title-block-header" class="quarto-title-block default page-columns"> -->
-<!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> -->
 <header id="title-block-header" class="quarto-title-block default page-columns">
 <div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
 <h1 class="title">Thoughts &amp; musings</h1>
 
+<div>
+  <div id="title-block-title-desc" class="description pt-4">
+    <p>This contains all sorts of materials: including previous position papers, pieces of code, and some rest pieces of education stuff</p>
+  </div>
+</div>
 
 </div>
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -213,7 +206,24 @@ window.Quarto = {
 
 
 
-</header>
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Causality">Causality <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Data science">Data science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Education">Education <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Interaction">Interaction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="LaTeX">LaTeX <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Predicting">Predicting <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Regional economics">Regional economics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Reproducability">Reproducability <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Teaching">Teaching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Theory driven approach">Theory driven approach <span class="quarto-category-count">(1)</span></div></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+<!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html -->
+<!-- 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title"> 
+-->
+<!-- <header id="title-block-header" class="quarto-title-block default page-columns"> -->
+<!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> -->
+
 
 
 
@@ -264,10 +274,10 @@ Thomas de Graaff
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Teaching,Reproducability" data-listing-date-sort="1617314400000" data-listing-file-modified-sort="1620111340000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="293">
+<div class="quarto-post image-right" data-index="1" data-categories="Teaching,Reproducability" data-listing-date-sort="1617314400000" data-listing-file-modified-sort="1713789680568" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="299">
 <div class="thumbnail">
 <p><a href="../posts/post/stated_choice/index.html" class="no-external"></a></p><a href="../posts/post/stated_choice/index.html" class="no-external">
-<p class="card-img-top"><img src="sidebar.jpg"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="post/stated_choice/featured.png"  class="thumbnail-image card-img"/></p>
 </a><p><a href="../posts/post/stated_choice/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -292,12 +302,12 @@ Reproducability
 Apr 2, 2021
 </div>
 <div class="listing-author">
-Thomas de Graaf
+Thomas de Graaff
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Interaction,LaTeX,Education" data-listing-date-sort="1443996000000" data-listing-file-modified-sort="1713539432382" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="430">
+<div class="quarto-post image-right" data-index="2" data-categories="Interaction,LaTeX,Education" data-listing-date-sort="1443996000000" data-listing-file-modified-sort="1713789710721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="430">
 <div class="thumbnail">
 <p><a href="../posts/post/krugman_neg/index.html" class="no-external"></a></p><a href="../posts/post/krugman_neg/index.html" class="no-external">
 <p class="card-img-top"><img src="post/krugman_neg/featured.png"  class="thumbnail-image card-img"/></p>
@@ -326,6 +336,9 @@ Education
 <a href="../posts/post/krugman_neg/index.html" class="no-external">
 <div class="listing-date">
 Oct 5, 2015
+</div>
+<div class="listing-author">
+Thomas de Graaff
 </div>
 </a>
 </div>

@@ -1,8 +1,7 @@
 ---
 title: Stated choice experiments
-author: Thomas de Graaf
-date: '2021-04-02'
-slug: stated-choice-experiments
+author: Thomas de Graaff
+date: 2021-04-02
 categories:
 - Teaching
 - Reproducability
@@ -17,6 +16,8 @@ materials, especially in the form of knowledge clips, that may help students in
 setting up the **design**, in their **estimations**, and in **interpreting**
 their results. 
 
+![An example of a stated choice question](featured)
+
 ## Knowledge clips
 
 Paul Koster has made several clip on stated choice experiments
@@ -29,8 +30,8 @@ Note that Paul Koster uses a different approach than usual as he allocates point
 
 I myself have made some clips this year. One is on an exam question (which is about the interpretation of the outcome and possible biases that may arise in Stated Preference surveys); the other deals with working with logistics regressions and why it is so different from ordinary least squares. 
 
-- [Exam question: the value of statistical life](https://video.vu.nl/media/vosl/1_ato8hlbc)
-- [Logistis regression](https://video.vu.nl/media/logistic%20regression/1_09nkiqyb)
+- [Exam question: the value of statistical life](https://video.vu.nl/media/vosl/1_rayl575b)
+- [Logistis regression](https://video.vu.nl/media/logistic+regression/1_4r3o8ned)
 
 Vincent van de Berg also created content in the context of transport economics:
 
@@ -38,8 +39,8 @@ Vincent van de Berg also created content in the context of transport economics:
 
 ## Background material 
 
-Paul Koster refers in his knowledge clip to the work of Sanko, Daly and Kroes (2002), so does Vincent van den Berg in this [lecture](/docs/SCE.pdf).
-You can find this paper [here](/docs/sanko.pdf).
+Paul Koster refers in his knowledge clip to the work of Sanko, Daly and Kroes (2002), so does Vincent van den Berg in this [lecture](SCE.pdf).
+You can find this paper [here](sanko.pdf).
 
 ## Previous theses
 
@@ -49,6 +50,6 @@ These theses should only be used for inspiration. Do not copy their methodologic
 
 Theses:
 
-- [Gerben de Jong (2014)](/docs/gerben_de_jong.pdf)
-- [Lena Pax (2020)](/docs/lena_pax.pdf)
-- [Erika de Keyser (2020)](/docs/de_keyser.pdf)
+- [Gerben de Jong (2014)](gerben_de_jong.pdf)
+- [Lena Pax (2020)](lena_pax.pdf)
+- [Erika de Keyser (2020)](de_keyser.pdf)

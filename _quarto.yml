@@ -21,9 +21,6 @@ website:
       - text: Posts
         aria-label: "My musings"
         href: posts/index.qmd
-      - text: Talks
-        aria-label: "Talks"
-        href: talk/index.qmd  
       - text: Research
         aria-label: "Research"
         href: research/index.qmd

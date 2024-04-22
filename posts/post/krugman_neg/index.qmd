@@ -1,6 +1,7 @@
 ---
 date: 2015-10-05
 title: "Krugman's Increasing Returns and Economic Geography"
+author: Thomas de Graaff
 categories:
 - Interaction
 - LaTeX

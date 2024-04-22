@@ -8,7 +8,8 @@
 <title>Thomas de Graaff</title>
 <link>http://thomasdegraaff.nl/posts/</link>
 <atom:link href="http://thomasdegraaff.nl/posts/index.xml" rel="self" type="application/rss+xml"/>
-<description>A spatial economist employed at the department of Spatial Economics of VU University Amsterdam</description>
+<description>This contains all sorts of materials: including previous position papers, pieces of code, and some rest pieces of education stuff
+</description>
 <generator>quarto-1.4.553</generator>
 <lastBuildDate>Fri, 04 Jun 2021 22:00:00 GMT</lastBuildDate>
 <item>
@@ -438,7 +439,7 @@ Questions?”</span> June 5, 2021. <a href="http://thomasdegraaff.nl//posts/post
 </item>
 <item>
   <title>Stated choice experiments</title>
-  <dc:creator>Thomas de Graaf</dc:creator>
+  <dc:creator>Thomas de Graaff</dc:creator>
   <link>http://thomasdegraaff.nl/posts/post/stated_choice/</link>
   <description><![CDATA[ 
 
@@ -455,6 +456,12 @@ Questions?”</span> June 5, 2021. <a href="http://thomasdegraaff.nl//posts/post
 <section id="what-is-this-about" class="level1">
 <h1>What is this about?</h1>
 <p>This is a more static and general post and deals with all sorts of materials considering <strong>stated choice experiments</strong> to help master students in conducting their analysis for their thesis. In the last year(s), we developed all sorts of materials, especially in the form of knowledge clips, that may help students in setting up the <strong>design</strong>, in their <strong>estimations</strong>, and in <strong>interpreting</strong> their results.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="http://thomasdegraaff.nl/posts/post/stated_choice/featured.png" class="img-fluid figure-img"></p>
+<figcaption>An example of a stated choice question</figcaption>
+</figure>
+</div>
 <section id="knowledge-clips" class="level2">
 <h2 class="anchored" data-anchor-id="knowledge-clips">Knowledge clips</h2>
 <p>Paul Koster has made several clip on stated choice experiments</p>
@@ -466,8 +473,8 @@ Questions?”</span> June 5, 2021. <a href="http://thomasdegraaff.nl//posts/post
 <p>Note that Paul Koster uses a different approach than usual as he allocates points to choices, which is applicable for studying different policies. The attractive feature of this is than one can uses just OLS instead of applying a logit (as typically in the case of discerning between two or more alternatives).</p>
 <p>I myself have made some clips this year. One is on an exam question (which is about the interpretation of the outcome and possible biases that may arise in Stated Preference surveys); the other deals with working with logistics regressions and why it is so different from ordinary least squares.</p>
 <ul>
-<li><a href="https://video.vu.nl/media/vosl/1_ato8hlbc">Exam question: the value of statistical life</a></li>
-<li><a href="https://video.vu.nl/media/logistic%20regression/1_09nkiqyb">Logistis regression</a></li>
+<li><a href="https://video.vu.nl/media/vosl/1_rayl575b">Exam question: the value of statistical life</a></li>
+<li><a href="https://video.vu.nl/media/logistic+regression/1_4r3o8ned">Logistis regression</a></li>
 </ul>
 <p>Vincent van de Berg also created content in the context of transport economics:</p>
 <ul>
@@ -476,24 +483,24 @@ Questions?”</span> June 5, 2021. <a href="http://thomasdegraaff.nl//posts/post
 </section>
 <section id="background-material" class="level2">
 <h2 class="anchored" data-anchor-id="background-material">Background material</h2>
-<p>Paul Koster refers in his knowledge clip to the work of Sanko, Daly and Kroes (2002), so does Vincent van den Berg in this <a href="../../../docs/SCE.pdf">lecture</a>. You can find this paper <a href="../../../docs/sanko.pdf">here</a>.</p>
+<p>Paul Koster refers in his knowledge clip to the work of Sanko, Daly and Kroes (2002), so does Vincent van den Berg in this <a href="SCE.pdf">lecture</a>. You can find this paper <a href="sanko.pdf">here</a>.</p>
 </section>
 <section id="previous-theses" class="level2">
 <h2 class="anchored" data-anchor-id="previous-theses">Previous theses</h2>
 <p>Already many theses have been written using Stated preference techniques. Below are some we do find of good quality and that also display the variation in topics. These theses should only be used for inspiration. Do not copy their methodological approach!</p>
 <p>Theses:</p>
 <ul>
-<li><a href="../../../docs/gerben_de_jong.pdf">Gerben de Jong (2014)</a></li>
-<li><a href="../../../docs/lena_pax.pdf">Lena Pax (2020)</a></li>
-<li><a href="../../../docs/de_keyser.pdf">Erika de Keyser (2020)</a></li>
+<li><a href="gerben_de_jong.pdf">Gerben de Jong (2014)</a></li>
+<li><a href="lena_pax.pdf">Lena Pax (2020)</a></li>
+<li><a href="de_keyser.pdf">Erika de Keyser (2020)</a></li>
 </ul>
 
 
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-de graaf2021" class="csl-entry quarto-appendix-citeas">
-Graaf, Thomas de. 2021. <span>“Stated Choice Experiments.”</span> April
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-de graaff2021" class="csl-entry quarto-appendix-citeas">
+Graaff, Thomas de. 2021. <span>“Stated Choice Experiments.”</span> April
 2, 2021. <a href="http://thomasdegraaff.nl//posts/post/stated_choice">http://thomasdegraaff.nl//posts/post/stated_choice</a>.
 </div></div></section></div> ]]></description>
   <category>Teaching</category>
@@ -503,6 +510,7 @@ Graaf, Thomas de. 2021. <span>“Stated Choice Experiments.”</span> April
 </item>
 <item>
   <title>Krugman’s Increasing Returns and Economic Geography</title>
+  <dc:creator>Thomas de Graaff</dc:creator>
   <link>http://thomasdegraaff.nl/posts/post/krugman_neg/</link>
   <description><![CDATA[ 
 
@@ -846,9 +854,9 @@ font-style: inherit;">document</span>}</span></code></pre></div>
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2015" class="csl-entry quarto-appendix-citeas">
-<span>“Krugman’s Increasing Returns and Economic Geography.”</span>
-2015. October 5, 2015. <a href="http://thomasdegraaff.nl//posts/post/krugman_neg">http://thomasdegraaff.nl//posts/post/krugman_neg</a>.
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-de graaff2015" class="csl-entry quarto-appendix-citeas">
+Graaff, Thomas de. 2015. <span>“Krugman’s Increasing Returns and
+Economic Geography.”</span> October 5, 2015. <a href="http://thomasdegraaff.nl//posts/post/krugman_neg">http://thomasdegraaff.nl//posts/post/krugman_neg</a>.
 </div></div></section></div> ]]></description>
   <category>Interaction</category>
   <category>LaTeX</category>

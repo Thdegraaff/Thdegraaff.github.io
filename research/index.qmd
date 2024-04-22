@@ -2,7 +2,7 @@
 title: "Research" 
 date-format: MMM, YYYY
 description: |
-  This is home for my research publications, working papers, etc., each linked with accompanying preprints, data, bibliographuc material and/or news pieces.
+  This is home for my research publications, working papers, etc., each linked with accompanying preprints, data, bibliographic material and/or news pieces.
 listing: 
   id: articles
   contents: 

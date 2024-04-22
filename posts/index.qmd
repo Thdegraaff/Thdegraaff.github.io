@@ -8,6 +8,7 @@ listing:
     - "post/*/index.markdown"
     - "post/*/index.md"
   sort: "date desc"
+  image-height: 2cm
   type: default
   categories: true
   sort-ui: false

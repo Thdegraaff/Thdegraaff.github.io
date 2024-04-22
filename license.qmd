@@ -1,10 +1,9 @@
 ---
 title: "License"
 description: | 
-  For those who would like to (re-)use the code: the code is the law as we all know
-format: 
-  html: 
-    page-layout: full
+  For those who would like to (re-)use the code: the code is the law
+html: 
+  page-layout: full
 header-includes: >
   <link rel="stylesheet" href="./assets/listing-default.css">
 resources:
@@ -17,3 +16,9 @@ All material are released under a [Creative Commons Attribution-ShareAlike 4.0 I
 <center>
 {{< fa brands creative-commons size=2xl >}} {{< fa brands creative-commons-by size=2xl >}} {{< fa brands creative-commons-sa size=2xl >}}
 </center>
+
+## Non-complicance
+
+You have to watch:
+
+![](featured.png)

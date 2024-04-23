@@ -41,7 +41,7 @@ website:
     right:
       - text: "License"
         aria-label: "License Details"
-        href: license.qmd
+        href: licence/license.qmd
     #  # Licence: [CC BY-NC-SA](https://creativecommons.org/licenses/by-sa/4.0/){{< fa brands creative-commons >}} {{< fa brands creative-commons-by  >}} {{< fa brands creative-commons-sa >}}
 
 format:

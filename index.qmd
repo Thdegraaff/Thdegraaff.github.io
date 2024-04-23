@@ -25,7 +25,8 @@ listing:
     max-items: 3
     feed: false
     
-toc: false    
+toc: false
+title-block-banner: false
 ---
 
 I am a **spatial economist** employed at the department of Spatial Economics of the Vrije Universiteit Amsterdam. My recent research focuses on **spatial interaction** patterns (e,g., tourism, trade, migration and commuting), **reproducibility** (e.g., meta-analysis) and the application of Bayesian **multilevel** models in the domain of spatial economics. 

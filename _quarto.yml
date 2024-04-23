@@ -24,6 +24,9 @@ website:
       - text: Research
         aria-label: "Research"
         href: research/index.qmd
+      - icon: envelope
+        aria-label: email
+        href: "mailto:t.de.graaff@vu.nl" 
 
   page-footer:
     border: false
@@ -49,6 +52,7 @@ format:
         - assets/thomas-theme-light.scss
     grid: 
       body-width: 900px
+    email-obfuscation: javascript
 #         # - assets/silvia/colors-light.scss
 #         # - assets/silvia/fonts.scss
 #      dark: 

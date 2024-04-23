@@ -52,7 +52,7 @@ format:
         - assets/thomas-theme-light.scss
     grid: 
       body-width: 900px
-    email-obfuscation: javascript
+#    email-obfuscation: javascript
 #         # - assets/silvia/colors-light.scss
 #         # - assets/silvia/fonts.scss
 #      dark: 

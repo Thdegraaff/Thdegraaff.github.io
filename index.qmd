@@ -3,26 +3,16 @@ title: "Welcome"
 date-format: MMM, YYYY
 
 listing:
-  - id: latest-content-pubs
+  - id: latest-content
     contents: 
     - /research/articles
-    sort: "date desc"
-    type: grid
-    categories: false
-    sort-ui: false
-    filter-ui: false
-    max-items: 3
-    feed: false
-    
-  - id: latest-content-posts
-    contents: 
     - /posts/post
     sort: "date desc"
     type: grid
     categories: false
     sort-ui: false
     filter-ui: false
-    max-items: 3
+    max-items: 6
     feed: false
     
 toc: false
@@ -37,14 +27,9 @@ I am a **spatial economist** employed at the department of Spatial Economics of 
 ::: {.listing-block .last-block} 
 <!-- last-block to remove line below -->
 
-## Latest publications
+## Latest ...
 
-::: {#latest-content-pubs}
-:::
-
-## Latest posts
-
-::: {#latest-content-posts}
+::: {#latest-content}
 :::
 
 :::

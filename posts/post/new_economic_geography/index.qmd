@@ -7,8 +7,6 @@ date: '2018-02-04'
 execute: 
   cache: true
 slug: new-economic-geography-model-with-r
-header-includes:
-   - \usepackage{amsmath}
 categories:
   - R
   - Education

@@ -509,6 +509,1617 @@ Graaff, Thomas de. 2021. <span>“Stated Choice Experiments.”</span> April
   <pubDate>Thu, 01 Apr 2021 22:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>New Economic Geography model with R</title>
+  <dc:creator>Thomas de Graaff</dc:creator>
+  <link>http://thomasdegraaff.nl/posts/post/new_economic_geography/</link>
+  <description><![CDATA[ 
+
+<!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html -->
+<!-- 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title"> 
+-->
+<!-- <header id="title-block-header" class="quarto-title-block default page-columns"> -->
+<!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> -->
+
+
+
+<section id="new-economic-geography-model-with-r" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="new-economic-geography-model-with-r">New economic geography model with R</h2>
+<section id="introduction" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Why some regions have more economic activiy than others depend on a variety of factors, including regions’ endowments, good policy and just sheer luck (oftentimes called path dependency). In the 1990s Paul Krugman constructed a model, the Core-Periphery model, that was able to model all these three elements. This model received quite some positive criticism (including a Nobel price), but still is rather complex in wielding it. In this post I show how one can actually program and depict the short term and long term equilibria that the model yields. The derived estimations are coming from Henri de Groot.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>One of the reason why this model is complex is that it can easility multiple equilibria like the figure below. Our goal in to prodcude the “Tomahawk” below.</p>
+<div id="fig-tomahawk" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tomahawk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="http://thomasdegraaff.nl/posts/post/new_economic_geography/featured.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tomahawk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Multiple equilibria
+</figcaption>
+</figure>
+</div>
+</div></div></section>
+<section id="the-actual-code" class="level3">
+<h3 class="anchored" data-anchor-id="the-actual-code">The actual code</h3>
+<p>We first need to read in some packages that we will use:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb1-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Read in libraries</span></span>
+<span id="cb1-3"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(nleqslv)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># for solving system of nonlinear equations</span></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># for structurally making plots</span></span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggthemes) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># for using economist theme</span></span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># for data wrangling</span></span>
+<span id="cb1-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(cowplot)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># for combining plots</span></span></code></pre></div>
+</div>
+<p>Then we define some constants. Note that you can change them if you need a different set-up.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb2-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define parameters</span></span>
+<span id="cb2-3"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb2-4"></span>
+<span id="cb2-5">L       <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Total labor force</span></span>
+<span id="cb2-6">phi1    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.48</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># fraction of food works living in region 1</span></span>
+<span id="cb2-7">gam     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># fraction that works in manufacturing</span></span>
+<span id="cb2-8">eps     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.0</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># elasticity of demand</span></span>
+<span id="cb2-9">rho     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># substitution parameter of variety</span></span>
+<span id="cb2-10">bet     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># variable costs</span></span>
+<span id="cb2-11">alp     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.08</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># fixed costs</span></span>
+<span id="cb2-12">delta   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># budget share manufacturing</span></span></code></pre></div>
+</div>
+<p>Moreover, we need some additional (none structural) constants, needed for the iteration and the granularity of our plots:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb3-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define iterations and stepsize for transporation and lambda</span></span>
+<span id="cb3-3"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb3-4"></span>
+<span id="cb3-5">iter_l <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">999</span></span>
+<span id="cb3-6">step_l <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.001</span></span>
+<span id="cb3-7">start_l <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.001</span></span>
+<span id="cb3-8"></span>
+<span id="cb3-9">iter_t <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">51</span></span>
+<span id="cb3-10">start_t <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span></span>
+<span id="cb3-11">step_t <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.01</span></span></code></pre></div>
+</div>
+<p>The model containts 6 non-linear equations, namely:</p>
+<img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0AY_1%20&amp;=%20%5Cphi_1(1-%5Cgamma)L%20+%20%5Clambda_1%20%5Cgamma%20LW_1%5C%5C%5C%5C%5C%5C%0AY_2%20&amp;=%20%5Cphi_2(1-%5Cgamma)L%20+%20(1-%5Clambda_1)%20%5Cgamma%20LW_2%5C%5C%5C%5C%5C%5C%0AW_1%20&amp;=%20%5Crho%20%5Cbeta%5E%7B-%5Crho%7D%5Cleft(%5Cfrac%7B%5Cdelta%7D%7B%5Calpha(%5Cepsilon-1)%7D%5Cright)%5E%7B1/%5Cepsilon%7D%20%5Cleft(Y_1%20I_1%5E%7B%5Cepsilon-1%7D%20+%20T%5E%7B1-%5Cepsilon%7DY_2%20I_2%5E%7B%5Cepsilon-1%7D%5Cright)%5E%7B1/%5Cepsilon%7D%5C%5C%5C%5C%5C%5C%0AW_2%20&amp;=%20%5Crho%20%5Cbeta%5E%7B-%5Crho%7D%5Cleft(%5Cfrac%7B%5Cdelta%7D%7B%5Calpha(%5Cepsilon-1)%7D%5Cright)%5E%7B1/%5Cepsilon%7D%20%5Cleft(T%5E%7B1-%5Cepsilon%7DY_1%20I_1%5E%7B%5Cepsilon-1%7D%20+%20Y_2%20I_2%5E%7B%5Cepsilon-1%7D%5Cright)%5E%7B1/%5Cepsilon%7D%5C%5C%5C%5C%5C%5C%0AI_1%20&amp;=%20%5Cleft(%5Cfrac%7B%5Cgamma%20L%7D%7B%5Calpha%20%5Cepsilon%7D%20%5Cright)%5E%7B1/(1-%5Cepsilon)%7D%5Cleft(%5Cfrac%7B%5Cbeta%7D%7B%5Crho%7D%5Cright)%20%5Cleft(%5Clambda%20W_1%5E%7B1-%5Cepsilon%7D%20+%20(1-%5Clambda)T%5E%7B1-%5Cepsilon%7D%20W_2%5E%7B1-%5Cepsilon%7D%5Cright)%5E%7B1/(1-%5Cepsilon)%7D%5C%5C%5C%5C%5C%5C%0AI_2%20&amp;=%20%5Cleft(%5Cfrac%7B%5Cgamma%20L%7D%7B%5Calpha%20%5Cepsilon%7D%20%5Cright)%5E%7B1/(1-%5Cepsilon)%7D%5Cleft(%5Cfrac%7B%5Cbeta%7D%7B%5Crho%7D%5Cright)%20%5Cleft(%5Clambda%20T%5E%7B1-%5Cepsilon%7D%20W_1%5E%7B1-%5Cepsilon%7D%20+%20(1-%5Clambda)%20W_2%5E%7B1-%5Cepsilon%7D%5Cright)%5E%7B1/(1-%5Cepsilon)%7D%5C%5C%5C%5C%5C%5C%0A%5Cend%7Baligned%7D">
+<p>The first two equations denote total regional income for regional 1 and 2, equation 3 and 4 give the regional wages for both regions and the last two equations determine regional price indices.</p>
+<p>Thus, the key optimalisation procedure looks as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb4-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Definite optimal function</span></span>
+<span id="cb4-3"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb4-4"></span>
+<span id="cb4-5">equilibrium <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(x){</span>
+<span id="cb4-6"></span>
+<span id="cb4-7">    Y1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb4-8">    Y2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]</span>
+<span id="cb4-9">    W1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>]</span>
+<span id="cb4-10">    W2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>]</span>
+<span id="cb4-11">    I1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>]</span>
+<span id="cb4-12">    I2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>]</span>
+<span id="cb4-13"></span>
+<span id="cb4-14">    y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rep</span>(<span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(x))</span>
+<span id="cb4-15"></span>
+<span id="cb4-16">    y[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> Y1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>phi1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>gam)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>L<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>lam<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>gam<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>L<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>W1</span>
+<span id="cb4-17">    y[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> Y2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>phi1)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>gam)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>L<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>lam)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>gam<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>L<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>W2</span>
+<span id="cb4-18">    y[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> W1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>rho<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>bet<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>rho)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(delta<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(alp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(eps<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>)))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>eps)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(Y1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>I1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(eps<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>T<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>Y2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>I2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(eps<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>eps)</span>
+<span id="cb4-19">    y[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> W2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>rho<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>bet<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>rho)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(delta<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(alp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(eps<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>)))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>eps)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(T<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>Y1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>I1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(eps<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>Y2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>I2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(eps<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>eps)</span>
+<span id="cb4-20">    y[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> I1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>(gam<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>L<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(alp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>eps))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(bet<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>rho)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(lam<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>W1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>lam)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>T<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>W2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps))</span>
+<span id="cb4-21">    y[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> I2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>(gam<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>L<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(alp<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>eps))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(bet<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>rho)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>(lam<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>T<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>W1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>lam)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>W2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>eps))</span>
+<span id="cb4-22"></span>
+<span id="cb4-23">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(y)</span>
+<span id="cb4-24">}</span></code></pre></div>
+</div>
+<p>And finally we need the loop below to create the figures</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb5-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create the vector where the output is stored</span></span>
+<span id="cb5-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># This is faster than using append</span></span>
+<span id="cb5-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># we will only append the equilibrium dataframe to find the</span></span>
+<span id="cb5-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># stable and unstable equiliria (do that in the slower (outer)</span></span>
+<span id="cb5-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># loop)</span></span>
+<span id="cb5-7"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb5-8"></span>
+<span id="cb5-9">rel       <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>iter_t)</span>
+<span id="cb5-10">lambda    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>iter_t)</span>
+<span id="cb5-11">transport <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>iter_t)</span>
+<span id="cb5-12">welfare   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>iter_t)</span>
+<span id="cb5-13">w_man_h   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>iter_t)</span>
+<span id="cb5-14">w_man_f   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>iter_t)</span>
+<span id="cb5-15">w_farm_h  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>iter_t)</span>
+<span id="cb5-16">w_farm_f  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>iter_t)</span>
+<span id="cb5-17"></span>
+<span id="cb5-18"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb5-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Set the double loop for the  optimal solution using the</span></span>
+<span id="cb5-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># package nleqslv.</span></span>
+<span id="cb5-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># The fast (inner) loop is over gamma, The slow (outer) loop is</span></span>
+<span id="cb5-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># over the transportation costs</span></span>
+<span id="cb5-23"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb5-24"></span>
+<span id="cb5-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Completely parameterized</span></span>
+<span id="cb5-26">loop_transport <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>( start_t, start_t <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> iter_t <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> step_t <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> step_t, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> step_t)</span>
+<span id="cb5-27">loop_gamma <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>( start_l, start_l <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> iter_l <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> step_l <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> step_l, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> step_l )</span>
+<span id="cb5-28">equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">T =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">numeric</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">gamma =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">numeric</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">stable =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">numeric</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>))</span>
+<span id="cb5-29"></span>
+<span id="cb5-30"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create intial starting values</span></span>
+<span id="cb5-31">start <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb5-32"></span>
+<span id="cb5-33">iteration <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># General counter</span></span>
+<span id="cb5-34"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">for</span> (T <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">in</span> loop_transport){</span>
+<span id="cb5-35">  iter_eq <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Counter to find the equilibria for lambda</span></span>
+<span id="cb5-36">  lam_vec <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># initialize lambda vector</span></span>
+<span id="cb5-37">  t_vec   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># initialize transport vector</span></span>
+<span id="cb5-38">  rel_vec <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vector</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> iter_l) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># initialize relative real wage diff vector</span></span>
+<span id="cb5-39">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">for</span> (lam <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">in</span> loop_gamma){</span>
+<span id="cb5-40">    iteration <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> iteration <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb5-41">    iter_eq   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span>  iter_eq <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb5-42">    opt <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nleqslv</span>(start, equilibrium)</span>
+<span id="cb5-43">    Y1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> opt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb5-44">    Y2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> opt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]</span>
+<span id="cb5-45">    W1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> opt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>]</span>
+<span id="cb5-46">    W2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> opt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>]</span>
+<span id="cb5-47">    I1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> opt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>]</span>
+<span id="cb5-48">    I2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> opt<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>]</span>
+<span id="cb5-49"></span>
+<span id="cb5-50">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Fill the various vectors</span></span>
+<span id="cb5-51">    rel[iteration]       <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (W1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>I1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(W2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>I2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta)</span>
+<span id="cb5-52">    welfare[iteration]   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> Y1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(I1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span>Y2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(I2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta)</span>
+<span id="cb5-53">    w_man_h[iteration]   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> W1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>I1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta</span>
+<span id="cb5-54">    w_man_f[iteration]   <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> W2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>I2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta</span>
+<span id="cb5-55">    w_farm_h[iteration]  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>I1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta</span>
+<span id="cb5-56">    w_farm_f[iteration]  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>I2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta</span>
+<span id="cb5-57">    lambda[iteration]    <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> lam</span>
+<span id="cb5-58">    transport[iteration] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> T</span>
+<span id="cb5-59"></span>
+<span id="cb5-60">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Needed to find the equilibria (a bit redundant but more readible so)</span></span>
+<span id="cb5-61">    lam_vec[iter_eq]     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> lam</span>
+<span id="cb5-62">    t_vec[iter_eq]       <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> T</span>
+<span id="cb5-63">    rel_vec[iter_eq]     <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (W1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>I1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>(W2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>I2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span>delta)</span>
+<span id="cb5-64">  }</span>
+<span id="cb5-65">  eq <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(t_vec, lam_vec, rel_vec)</span>
+<span id="cb5-66">  eq <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> eq <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-67">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb5-68">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dpos =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>( ( (rel_vec <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> ( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lag</span>(rel_vec) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)  <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> ),</span>
+<span id="cb5-69">           <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dneg =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>( ( (rel_vec <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> ( <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lag</span>(rel_vec) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)  <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> )</span>
+<span id="cb5-70">           )</span>
+<span id="cb5-71">  stable <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> eq <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-72">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(dneg <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-73">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">stable =</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-74">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>dpos)</span>
+<span id="cb5-75">  unstable <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> eq <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-76">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(dpos <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-77">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">stable =</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-78">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>dneg)</span>
+<span id="cb5-79">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(stable) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> ) {</span>
+<span id="cb5-80">      equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(equilibria, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(stable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], stable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>], stable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>]))</span>
+<span id="cb5-81">      }</span>
+<span id="cb5-82">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(unstable) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) {</span>
+<span id="cb5-83">      equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(equilibria, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>], unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>]))</span>
+<span id="cb5-84">      }</span>
+<span id="cb5-85">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(unstable) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>){</span>
+<span id="cb5-86">    equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(equilibria, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb5-87">    equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(equilibria, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb5-88">  }</span>
+<span id="cb5-89">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> ( (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(unstable) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(stable) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) ) {</span>
+<span id="cb5-90">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (stable<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>lam_vec[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> unstable<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>lam_vec[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] ){</span>
+<span id="cb5-91">      equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(equilibria, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb5-92">    }</span>
+<span id="cb5-93">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (stable<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>lam_vec[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> unstable<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>lam_vec[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] ){</span>
+<span id="cb5-94">      equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(equilibria, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb5-95">    }</span>
+<span id="cb5-96">  }</span>
+<span id="cb5-97">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> ((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(unstable) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(stable)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>) {</span>
+<span id="cb5-98">      equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(equilibria, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb5-99">      equilibria <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbind</span>(equilibria, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(unstable[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb5-100">  }</span>
+<span id="cb5-101">}</span>
+<span id="cb5-102"></span>
+<span id="cb5-103"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb5-104"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create the dataframe called neg_data</span></span>
+<span id="cb5-105"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb5-106"></span>
+<span id="cb5-107">neg_data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(transport, lambda, rel, welfare,</span>
+<span id="cb5-108">                       w_man_h, w_man_f, w_farm_h, w_farm_f)</span>
+<span id="cb5-109"></span>
+<span id="cb5-110"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb5-111"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># For creating the plots</span></span>
+<span id="cb5-112"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">################################################################</span></span>
+<span id="cb5-113"></span>
+<span id="cb5-114"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#Indicate which lines should be highlighted</span></span>
+<span id="cb5-115">top_line <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> neg_data[neg_data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>transport <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1.5"</span>, ]</span>
+<span id="cb5-116">bottom_line <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> neg_data[neg_data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>transport <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2"</span>, ]</span>
+<span id="cb5-117">mid_line <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> neg_data[neg_data<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>transport <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1.75"</span>, ]</span></code></pre></div>
+</div>
+<p>So we can get our wiggle and tomahawk picture we want:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(neg_data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(lambda, rel, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> transport) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> top_line, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> lambda, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> rel, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> transport, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"steelblue"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> bottom_line, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> lambda, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> rel, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> transport, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> mid_line, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> lambda, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> rel, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> transport, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_colour_discrete</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Transportation costs"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"High"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Medium"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Low"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_hline</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yintercept =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_economist</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Wiggle diagram"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Relative real wage"</span>,</span>
+<span id="cb6-9">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Changes in relative real wage with varying lambda and transportation costs"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="http://thomasdegraaff.nl/posts/post/new_economic_geography/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(equilibria) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(t_vec, lam_vec) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(stable))) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_economist</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.title=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>()) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_colour_discrete</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"0"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Unstable equilibrium"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Stable equilibrium"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tomahawk"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lambda"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transportation costs"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="http://thomasdegraaff.nl/posts/post/new_economic_geography/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-de graaff2018" class="csl-entry quarto-appendix-citeas">
+Graaff, Thomas de. 2018. <span>“New Economic Geography Model with
+R.”</span> February 4, 2018. <a href="http://thomasdegraaff.nl//posts/post/new_economic_geography">http://thomasdegraaff.nl//posts/post/new_economic_geography</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>Education</category>
+  <category>Interaction</category>
+  <guid>http://thomasdegraaff.nl/posts/post/new_economic_geography/</guid>
+  <pubDate>Sat, 03 Feb 2018 23:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Choosing statistical software packages for education in the social sciences</title>
   <dc:creator>Thomas de Graaff</dc:creator>
   <link>http://thomasdegraaff.nl/posts/post/stat_software/</link>
@@ -597,11 +2208,24 @@ Graaff, Thomas de. 2021. <span>“Stated Choice Experiments.”</span> April
 <p>STATA itself is well scriptable internally. although it is less programming and more sequencing commands, for the majority of research projects this is definitely good enough. Externally, however, there are other issues which has to do with its proprietary nature. Other applications, such as great ?nix utilities as make and pandoc but as well git and github have difficulties ‘communicating’ with STATA. It is possible, however, to export from STATA to other formats, especially to ubiquitous text files format, which enables automatic generation of LaTeX tables.</p>
 <p>Finally, alas, STATA is not open source. This hinders reproducibility, insight in the source code (“How the hell did they do that?”) as well as the transferability of data (the STATA .dta dataformat is not accessible to read directly, although many other packages, including R, have created special read procedures for STATA dataformats).</p>
 </section>
-<section id="r" class="level2" data-number="4">
+<section id="r" class="level2 page-columns page-full" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="r"><span class="header-section-number">4</span> R</h2>
 <p>R emerged in 1995 as the open-source (GNU) version of the S language and quickly surpassed its predecessor in popularity.<sup>11</sup> R itself consists of a base distribution which can be enhanced with packages, and it is exactly the ease of writing, distributing and using packages that makes R so attractive for many users. At the moment there are more than 10,000 packages on the official CRAN website, but Github contains many more.<sup>12</sup></p>
 <p>Because of its open-source nature and its large and very active community, the quality of most of the packages is almost guaranteed. Indeed, if there are killer applications in the data science world, then R has most of them, with as most notifiable examples dplyr for quick and robust data manipulation and ggplot2 for structural plotting using the <em>grammar of graphics</em> approach as advocated by <span class="citation" data-cites="wilkinson2012grammar">Wilkinson (2012)</span> and implemented by <span class="citation" data-cites="wickham2006introduction">Wickham (2006)</span>.</p>
-<p>The learning curve of R is however steeper than that of STATA.<sup>13</sup> Having said that, learning basic R is still relatively quick (and accessible) and can be done in a short time with great free online courses. Today, teaching Stata to students requires at least one tutorial class, where teaching R can—theoretically, at least— be self-contained.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>ggplot2 really advocates for the creation of diagrams with multiple dimensions, of which an early example is the well-know Minard map as below</p>
+<div id="fig-minard" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-minard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="http://thomasdegraaff.nl/posts/post/stat_software/featured.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-minard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Minard map
+</figcaption>
+</figure>
+</div>
+</div></div><p>The learning curve of R is however steeper than that of STATA.<sup>13</sup> Having said that, learning basic R is still relatively quick (and accessible) and can be done in a short time with great free online courses. Today, teaching Stata to students requires at least one tutorial class, where teaching R can—theoretically, at least— be self-contained.</p>
 <p>Typically, R is characterized as:</p>
 <blockquote class="blockquote">
 <p>R is written by statisticians, for statisticians.</p>

@@ -8,7 +8,7 @@ listing:
     - "post/*/index.markdown"
     - "post/*/index.md"
   sort: "date desc"
-  image-height: 2cm
+  image-height: 2.5cm
   type: default
   categories: true
   sort-ui: false
@@ -16,7 +16,7 @@ listing:
   fields: [title, author, categories, date, image]
   image-placeholder: sidebar.jpg
   image-align: right
-  page-size: 5
+  page-size: 10
   feed:
     categories: [R]
 citation: false

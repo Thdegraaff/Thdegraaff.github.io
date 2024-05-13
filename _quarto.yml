@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - "data/*"
+    - CNAME
 
 website:
   title: "Thomas de Graaff"

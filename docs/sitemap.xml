@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://thomasdegraaff.nl/license.html</loc>
+    <loc>http://thomasdegraaff.nl/licence/license.html</loc>
     <lastmod>2024-04-22T15:49:42.509Z</lastmod>
   </url>
   <url>
@@ -10,35 +10,39 @@
   </url>
   <url>
     <loc>http://thomasdegraaff.nl/posts/post/stated_choice/index.html</loc>
-    <lastmod>2024-04-22T12:41:20.568Z</lastmod>
+    <lastmod>2024-05-13T15:07:45.014Z</lastmod>
   </url>
   <url>
-    <loc>http://thomasdegraaff.nl/posts/post/krugman_neg/index.html</loc>
-    <lastmod>2024-04-22T12:41:50.721Z</lastmod>
+    <loc>http://thomasdegraaff.nl/posts/post/stat_software/index.html</loc>
+    <lastmod>2024-05-13T15:10:13.176Z</lastmod>
   </url>
   <url>
-    <loc>http://thomasdegraaff.nl/research/articles/donovan-2024/index.html</loc>
-    <lastmod>2024-04-19T08:29:10.665Z</lastmod>
-  </url>
-  <url>
-    <loc>http://thomasdegraaff.nl/research/articles/wang-2018-barriers/index.html</loc>
-    <lastmod>2024-04-19T08:31:53.541Z</lastmod>
-  </url>
-  <url>
-    <loc>http://thomasdegraaff.nl/research/articles/wang-2016/index.html</loc>
-    <lastmod>2024-04-19T08:34:30.840Z</lastmod>
-  </url>
-  <url>
-    <loc>http://thomasdegraaff.nl/research/articles/bernasco-2016/index.html</loc>
-    <lastmod>2024-04-19T08:28:10.341Z</lastmod>
+    <loc>http://thomasdegraaff.nl/research/index.html</loc>
+    <lastmod>2024-04-22T12:45:51.816Z</lastmod>
   </url>
   <url>
     <loc>http://thomasdegraaff.nl/research/articles/Donovan-2024-housing-economics/index.html</loc>
     <lastmod>2024-04-19T10:36:34.924Z</lastmod>
   </url>
   <url>
-    <loc>http://thomasdegraaff.nl/research/index.html</loc>
-    <lastmod>2024-04-22T12:45:51.816Z</lastmod>
+    <loc>http://thomasdegraaff.nl/research/articles/bernasco-2016/index.html</loc>
+    <lastmod>2024-04-19T08:28:10.341Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/research/articles/wang-2016/index.html</loc>
+    <lastmod>2024-04-19T08:34:30.840Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/research/articles/wang-2018-barriers/index.html</loc>
+    <lastmod>2024-04-19T08:31:53.541Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/research/articles/donovan-2024/index.html</loc>
+    <lastmod>2024-04-19T08:29:10.665Z</lastmod>
+  </url>
+  <url>
+    <loc>http://thomasdegraaff.nl/posts/post/krugman_neg/index.html</loc>
+    <lastmod>2024-04-22T12:41:50.721Z</lastmod>
   </url>
   <url>
     <loc>http://thomasdegraaff.nl/posts/post/research_agenda/index.html</loc>
@@ -50,10 +54,6 @@
   </url>
   <url>
     <loc>http://thomasdegraaff.nl/index.html</loc>
-    <lastmod>2024-05-07T06:38:32.848Z</lastmod>
-  </url>
-  <url>
-    <loc>http://thomasdegraaff.nl/licence/license.html</loc>
-    <lastmod>2024-04-22T15:49:42.509Z</lastmod>
+    <lastmod>2024-05-13T15:03:52.726Z</lastmod>
   </url>
 </urlset>

@@ -1,5 +1,6 @@
 ---
 title: Stated choice experiments
+description: Some additional material for students to use a stated choice experiment
 author: Thomas de Graaff
 date: 2021-04-02
 categories:

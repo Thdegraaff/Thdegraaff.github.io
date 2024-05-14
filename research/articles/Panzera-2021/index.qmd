@@ -1,0 +1,61 @@
+---
+title: "European cultural heritage and tourism flows: The magnetic role of superstar World Heritage Sites"
+date: 2021-02-01
+author: 
+- Elisa Panzera
+- Thomas de Graaff
+- Henri L. F. de Groot
+categories:
+  - cultural heritage
+  - European regions
+  - multilevel gravity model
+  - tourism flows
+description: "*Papers in Regional Science*"
+abstract: ''
+links:
+  - icon: file-richtext-fill
+    name: Publication
+    url: https://doi.org/10.1111/pirs.12562
+---
+
+## Abstract
+
+Cultural heritage is a potentially important determinant of international tourism flows. Apart from being an enrichment for both individuals and communities and an opportunity for different cultures to meet, tourism also represents a significant industry for European economies. We empirically investigate the impact of the endowment of tangible cultural heritage on tourism attractiveness of European regions. We measure material forms of cultural heritage both as regional density of locally defined monuments, cultural landscapes and museums, and as number of cultural sites listed in the UNESCO World Heritage Sites international programme. Using a Bayesian multilevel gravity model, we find that UNESCO cultural World Heritage Sites are associated with an increase of 6,000 (one site) to 60,000 (eight sites) international tourists from each European country to an average European region. On the other hand, regionally or nationally defined tangible forms of heritage play a more limited role as pull‐factors for international tourism. Moreover, we show that the presence of UNESCO sites reduces the distance decay effect. International tourists are willing to travel longer distance if a destination is endowed with UNESCO cultural World Heritage Sites.
+
+## The effect of crime on agglomeration economies in consumption
+
+n this paper we test the hypothesis that, because of their unique and idiosyncratic nature, tangible cultural heritage sites in destination regions enhance international inward tourist flows. To do so, we estimate a Bayesian multi-level gravity model to identify the determinants of international tourist arrivals to European NUTS 2 regions. The
+aim of the paper is twofold: (i) we contribute to the debate about the relationship between destination endowments
+of tangible cultural heritage and tourist movements focusing on European destinations; and (ii) draw attention to the heterogeneous appeal of different kinds of tangible cultural heritage. Since diverse measures of heritage carry differ-
+ent conceptual implications, we implement different proxies for the endowment of cultural heritage. To do so, we
+first use a bundle of quantitative measures provided by ESPON,1 namely territorial density of monuments, cultural
+landscapes and museums. As these indicators are built using national and regional heritage lists, we investigate
+whether regionally or nationally defined cultural heritage acts as a tourist attractor. Second, we consider the regional
+endowment of UNESCO World Heritage Sites starting from the idea that these kinds of sites are able to engage
+international tourist acting as an appealing territorial resource for tourism.2 This indicator of tangible heritage is more
+related to international visibility and promotion rather than to quantity and local relevance. Moreover, we test
+whether UNESCO World Heritage Sites represent a quality guarantee attracting tourists from further origins. In
+other words, whether tourists are more willing to travel longer distances to visit their destination if a UNESCO site is
+there. We therefore analyse whether UNESCO listings reduce the distance decay effect. Our main findings are that
+UNESCO World Heritage sites are an important determinant of attracting international tourists rather than nationally
+defined monuments, museums and cultural landscapes. We find that the regional presence of UNESCO World Heritage Sites correlates with an increase of 6,000 (one site) to about 60,000 (eight sites) in international tourist flows
+from each country in our dataset. Furthermore, we find that the presence of World Heritage Sites indeed flattens
+out the distance-decay curve, making regions endowed with these sites more appealing for tourists travelling from
+further away.
+
+![Distance effects on amount of tourist arrivals by amount of UNESCO World Heritage Sites (all other variables are fixed at mean values)](featured.png)
+
+## Citation
+
+```bibtex
+@article{panzera2021european,
+  title={European cultural heritage and tourism flows: The magnetic role of superstar World Heritage Sites},
+  author={Panzera, Elisa and de Graaff, Thomas and de Groot, Henri LF},
+  journal={Papers in Regional Science},
+  volume={100},
+  number={1},
+  pages={101--123},
+  year={2021},
+  publisher={Elsevier}
+}
+```

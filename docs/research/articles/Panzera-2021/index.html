@@ -6,13 +6,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Stuart Donovan">
+<meta name="author" content="Elisa Panzera">
 <meta name="author" content="Thomas de Graaff">
 <meta name="author" content="Henri L. F. de Groot">
-<meta name="author" content="Aaron Schiff">
-<meta name="description" content="Journal of Housing Economics">
+<meta name="description" content="Papers in Regional Science">
 
-<title>Thomas de Graaff - An urban overhead? Crime, agglomeration, and amenity</title>
+<title>Thomas de Graaff - European cultural heritage and tourism flows: The magnetic role of superstar World Heritage Sites</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,27 +58,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -130,35 +109,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -209,20 +159,19 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns">
 <div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
-<h1 class="title">An urban overhead? Crime, agglomeration, and amenity</h1>
+<h1 class="title">European cultural heritage and tourism flows: The magnetic role of superstar World Heritage Sites</h1>
 
 <div>
   <div id="title-block-title-desc" class="description pt-4">
-    <em>Journal of Housing Economics</em>
+    <em>Papers in Regional Science</em>
   </div>
 </div>
 
     <div class="quarto-categories">
-        <div class="quarto-category">Crime</div>
-        <div class="quarto-category">Urban development</div>
-        <div class="quarto-category">Agglomeration economies</div>
-        <div class="quarto-category">Amenity</div>
-        <div class="quarto-category">New Zealand</div>
+        <div class="quarto-category">cultural heritage</div>
+        <div class="quarto-category">European regions</div>
+        <div class="quarto-category">multilevel gravity model</div>
+        <div class="quarto-category">tourism flows</div>
       </div>
   </div>
 
@@ -232,17 +181,16 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
-             <p>Stuart Donovan </p>
+             <p>Elisa Panzera </p>
              <p>Thomas de Graaff </p>
              <p>Henri L. F. de Groot </p>
-             <p>Aaron Schiff </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 2024</p>
+      <p class="date">February 2021</p>
     </div>
   </div>
   
@@ -252,7 +200,7 @@ window.Quarto = {
 
 
 <div class="mt-4 d-flex flex-row flex-wrap gap-1 justify-content-left justify-content-sm-start" role="group" aria-label="Links">
-<a href="https://doi.org/10.1016/j.jhe.2024.101994" class="btn btn-secondary text-capitalize"><i class="bi bi-file-richtext-fill me-1"></i> Publication</a>
+<a href="https://doi.org/10.1111/pirs.12562" class="btn btn-secondary text-capitalize"><i class="bi bi-file-richtext-fill me-1"></i> Publication</a>
 </div>
 
 </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -284,38 +232,35 @@ window.Quarto = {
 
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>We study the effects of crime and agglomeration on urban amenity using data for 134 locations in New Zealand and report three key findings. First, the negative effects of crime operate mostly via rents, with elasticities that range from −0.15 to −0.44. Accounting for endogeneity leads to larger elasticities in some specifications, possibly due to sorting effects. Second, crime has negative effects on the value of urban amenities, with elasticities that range from approximately −0.03 to −0.06 for firms and −0.02 to −0.09 for workers. Using reduced-form models, we show that these effects imply an elasticity of population with respect to crime of −0.04 to −0.10. Third, controlling for crime causes estimates of agglomeration economies to increase by approximately 0.01–0.02 points, on average. Our findings confirm that crime is an important urban congestion cost that erodes productivity and well-being.</p>
+<p>Cultural heritage is a potentially important determinant of international tourism flows. Apart from being an enrichment for both individuals and communities and an opportunity for different cultures to meet, tourism also represents a significant industry for European economies. We empirically investigate the impact of the endowment of tangible cultural heritage on tourism attractiveness of European regions. We measure material forms of cultural heritage both as regional density of locally defined monuments, cultural landscapes and museums, and as number of cultural sites listed in the UNESCO World Heritage Sites international programme. Using a Bayesian multilevel gravity model, we find that UNESCO cultural World Heritage Sites are associated with an increase of 6,000 (one site) to 60,000 (eight sites) international tourists from each European country to an average European region. On the other hand, regionally or nationally defined tangible forms of heritage play a more limited role as pull‐factors for international tourism. Moreover, we show that the presence of UNESCO sites reduces the distance decay effect. International tourists are willing to travel longer distance if a destination is endowed with UNESCO cultural World Heritage Sites.</p>
 </section>
 <section id="the-effect-of-crime-on-agglomeration-economies-in-consumption" class="level2">
 <h2 class="anchored" data-anchor-id="the-effect-of-crime-on-agglomeration-economies-in-consumption">The effect of crime on agglomeration economies in consumption</h2>
-<p>An important finding of our paper is that controlling for crime causes our estimates of agglomeration economies in production and consumption, <span class="math inline">\(E_d^y\)</span> and <span class="math inline">\(E_d^u\)</span>, to increase on average by 0.011 and 0.021 points, respectively. The magnitude of this increase is similar to that reported in <span class="citation" data-cites="donovan2022cities">(cf.&nbsp;Table 2 <a href="#ref-donovan2022cities" role="doc-biblioref">Donovan et al. 2022</a>)</span> when controlling for commuting costs, which implies that the negative effects of crime on agglomeration economies may be of a similar order of magnitude to those for road congestion—at least in the New Zealand context. Although the differences in our estimates of average agglomeration economies when controlling for crime are economically significant, they are not statistically significant. Nonetheless, we can draw on other evidence to confirm the effect of crime on agglomeration economies. The figure below illustrates this.</p>
+<p>n this paper we test the hypothesis that, because of their unique and idiosyncratic nature, tangible cultural heritage sites in destination regions enhance international inward tourist flows. To do so, we estimate a Bayesian multi-level gravity model to identify the determinants of international tourist arrivals to European NUTS 2 regions. The aim of the paper is twofold: (i) we contribute to the debate about the relationship between destination endowments of tangible cultural heritage and tourist movements focusing on European destinations; and (ii) draw attention to the heterogeneous appeal of different kinds of tangible cultural heritage. Since diverse measures of heritage carry differ- ent conceptual implications, we implement different proxies for the endowment of cultural heritage. To do so, we first use a bundle of quantitative measures provided by ESPON,1 namely territorial density of monuments, cultural landscapes and museums. As these indicators are built using national and regional heritage lists, we investigate whether regionally or nationally defined cultural heritage acts as a tourist attractor. Second, we consider the regional endowment of UNESCO World Heritage Sites starting from the idea that these kinds of sites are able to engage international tourist acting as an appealing territorial resource for tourism.2 This indicator of tangible heritage is more related to international visibility and promotion rather than to quantity and local relevance. Moreover, we test whether UNESCO World Heritage Sites represent a quality guarantee attracting tourists from further origins. In other words, whether tourists are more willing to travel longer distances to visit their destination if a UNESCO site is there. We therefore analyse whether UNESCO listings reduce the distance decay effect. Our main findings are that UNESCO World Heritage sites are an important determinant of attracting international tourists rather than nationally defined monuments, museums and cultural landscapes. We find that the regional presence of UNESCO World Heritage Sites correlates with an increase of 6,000 (one site) to about 60,000 (eight sites) in international tourist flows from each country in our dataset. Furthermore, we find that the presence of World Heritage Sites indeed flattens out the distance-decay curve, making regions endowed with these sites more appealing for tourists travelling from further away.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="featured.png" class="img-fluid figure-img"></p>
-<figcaption>Left panel: Histogram of location-specific estimates of agglomeration economies in consumption, <span class="math inline">\(E^u_{d,i}\)</span>, from <span class="citation" data-cites="donovan2022cities">Donovan et al. (<a href="#ref-donovan2022cities" role="doc-biblioref">2022</a>)</span> where the dashed vertical line denotes the mean. Right panel: <span class="math inline">\(E^u_{d,i}\)</span> (vertical axis) versus total victimisations, <span class="math inline">\(\ln V_i\)</span> (horizontal axis), where the vertical and horizontal lines denote 95% credibility intervals and the dashed vertical line denotes the population-weighted mean of <span class="math inline">\(\ln V_i\)</span>.</figcaption>
+<figcaption>Distance effects on amount of tourist arrivals by amount of UNESCO World Heritage Sites (all other variables are fixed at mean values)</figcaption>
 </figure>
 </div>
 </section>
 <section id="citation" class="level2">
 <h2 class="anchored" data-anchor-id="citation">Citation</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">donovan2024urban</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={An urban overhead? Crime, agglomeration, and amenity},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Donovan, Stuart and de Graaff, Thomas and de Groot, Henri LF and Schiff, Aaron},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Journal of Housing Economics},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>={101994},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2024},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={Elsevier}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">panzera2021european</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={European cultural heritage and tourism flows: The magnetic role of superstar World Heritage Sites},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Panzera, Elisa and de Graaff, Thomas and de Groot, Henri LF},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Papers in Regional Science},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span>={100},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span>={1},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>={101--123},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2021},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={Elsevier}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-donovan2022cities" class="csl-entry" role="listitem">
-Donovan, Stuart, Thomas de Graaff, Arthur Grimes, Henri LF de Groot, and David C Maré. 2022. <span>“Cities with Forking Paths? Agglomeration Economies in New Zealand 1976–2018.”</span> <em>Regional Science and Urban Economics</em> 95: 103799.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

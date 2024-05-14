@@ -1,6 +1,6 @@
 ---
 title: "An urban overhead? Crime, agglomeration, and amenity"
-date: 2024-04-08
+date: 2024-06-01
 author: 
 - Stuart Donovan
 - Thomas de Graaff
@@ -17,7 +17,7 @@ abstract: ''
 links:
   - icon: file-richtext-fill
     name: Publication
-    url: https://doi-org.vu-nl.idm.oclc.org/10.1016/j.jhe.2024.101994
+    url: https://doi.org/10.1016/j.jhe.2024.101994
 ---
 
 ## Abstract

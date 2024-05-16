@@ -1,0 +1,87 @@
+---
+title: "Valuation of ethnic diversity: heterogeneous effects in an integrated labor and housing market"
+date: 2020-01-01
+author:
+- Jessie Bakens
+- Thomas de Graaff
+descroption: "*Journal of Economic Geography*"
+categories:
+  - Heterogeneity 
+  - Ethnic diversity
+  - Valuation
+  - Amenities
+  - Microdata
+links:
+  - icon: file-richtext-fill
+    name: Publication
+    url: https://doi-org.vu-nl.idm.oclc.org/10.1093/jeg/lby062
+---
+
+## Abstract
+
+We estimate the heterogeneous impact of the scale, composition and consumer good effect of ethnic diversity on individuals’ job and residential location. Using an extensive pooled micro panel data set in which homeowners in the Netherlands are identified in both the housing and labor market, we can derive the combined effect of ethnic diversity in both markets. We test a model that integrates the utility and production function such that the location of work and residence is determined simultaneously by taking into account observed and unobserved heterogeneous individual behavior on both markets. We find that the scale of ethnic diversity, that is the share of immigrants, at the city level is mostly positively related to both wages and house prices. This is mainly through a positive productivity effect of immigrants, which results in negative implicit prices for housing (although small) in a city with a higher scale of ethnic diversity for the majority of the individuals in our data. The scale of ethnic diversity is only positively related to utility for a small group of homeowners, while the composition (diversity among immigrants) and the consumer good-effect (ethnic diversity of restaurants) of ethnic diversity show overall no significant effect on both markets nor significant implicit prices. Moreover, we find that the majority of Dutch homeowners do not sort themselves out over municipalities by their preferences for ethnic diversity.
+
+## Contribution
+
+The main contribution of our article to the literature is 3-fold. First, our approach
+overcomes the methodological issues inherent in most research on this topic that
+depends heavily on the specific subsample chosen or are focused on the 'average' effect.
+The latter issue is concerned with the fact that it is either assumed that all individuals
+benefit equally from ethnic diversity or that specific homogeneous groups of individuals
+are sampled to control for possible variation in the impacts (see, e.g. Florida, 2002;
+Ottaviano and Peri, 2005, 2006; Dalmazzo and de Blasio, 2011). The usual approach to
+account for possible heterogeneity in the effects is to use individual fixed effects. This
+approach controls for (un)observed individual characteristics that might determine
+differences in utility and preferences. However, it is precisely these (un)observed
+heterogeneous individual characteristics that play an important role in explaining the
+individual differences in wages and utility (Bakens et al., 2013). Thus, disregarding
+individual variation in characteristics by focusing on the average effects of ethnic
+diversity on wages and utility very likely provides a misguided view of the effects of
+ethnic diversity on specific population groups. By using a finite mixture model, no pre-
+determined samples of individuals need to be made, but effects can be estimated over
+different groups within the model. Although there is related research in which Ozgen
+and de Graaff (2013) and Nathan (2016) apply finite mixture models to analyze the
+effect of (ethnic) diversity on productivity and innovation, and Kemeny and Cooke (2018) analyze the effect of ethnic diversity on productivity along wage quartiles, we are not aware of other research that explores heterogeneous effects of population
+diversity on individual utility.
+
+::: {.column-margin}
+![Distribution of income over (ethnic) amenity quartiles at the city level.](featured.png){#fig-distinc}
+:::
+
+::: {.column-margin}
+![Distribution of house prices (per square meter) over (ethnic) amenity quartiles at the city level.](rentdiv.png){#fig-distrent}
+:::
+
+
+Secondly, by using a theoretical framework based upon Roback (1982, 1988), we
+show that failing to account for unobserved heterogeneity simultaneously in both labor
+and housing markets results in biased estimates of the impacts of diversity on wages and
+utility. Our empirical analysis indeed shows that estimating wage and housing prices
+separately yield different results when compared with our simultaneous estimation.
+
+Finally, we employ an extensive micro dataset consisting of a pooled cross-section of
+administrative income and housing data between 1998 and 2008 in the Netherlands.
+This data focus on homeowners in the labor and the housing market. The micro-data
+allow a simultaneous estimation of an individual's correlated choice of location of living
+and work and we explicitly allow individuals to work and live in different cities.
+Relaxing the assumption that the amenity endowment in the area of work is equal to
+that of the area of residence accommodates the empirical setting in many countries,
+especially in the Netherlands, where half of the workers do not live in the same
+municipality in which they work. Because we use a pooled cross-section instead of panel
+data, this article is focused more on estimating possible heterogeneity in correlations
+for different individuals than on causal effects.
+
+## Citation
+
+```bibtex
+@article{bakens2020valuation,
+  title={Valuation of ethnic diversity: Heterogeneous effects in an integrated labor and housing market},
+  author={Bakens, Jessie and De Graaff, Thomas},
+  journal={Journal of Economic Geography},
+  volume={20},
+  number={1},
+  pages={197--223},
+  year={2020},
+  publisher={Oxford University Press}
+}
+```

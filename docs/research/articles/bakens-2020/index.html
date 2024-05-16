@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jessie Bakens">
+<meta name="author" content="Thomas de Graaff">
 
-<title>Thomas de Graaff - Welcome</title>
+<title>Thomas de Graaff - Valuation of ethnic diversity: heterogeneous effects in an integrated labor and housing market</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,31 +22,63 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./data/img/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../data/img/favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,79 +106,21 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-latest-content .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-latest-content'] = new List('listing-latest-content', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./data/img/favicon.png" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../data/img/favicon.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Thomas de Graaff</span>
     </a>
   </div>
@@ -155,15 +131,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about/index.html"> 
+    <a class="nav-link" href="../../../about/index.html"> 
 <span class="menu-text">About me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts/index.html"> 
+    <a class="nav-link" href="../../../posts/index.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research/index.html"> 
+    <a class="nav-link" href="../../../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item compact">
@@ -179,190 +155,123 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    
-<!-- main -->
-<main class="content" id="quarto-document-content">
+<header id="title-block-header" class="quarto-title-block default page-columns">
+<div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
+<h1 class="title">Valuation of ethnic diversity: heterogeneous effects in an integrated labor and housing market</h1>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Welcome</h1>
-</div>
 
+    <div class="quarto-categories">
+        <div class="quarto-category">Heterogeneity</div>
+        <div class="quarto-category">Ethnic diversity</div>
+        <div class="quarto-category">Valuation</div>
+        <div class="quarto-category">Amenities</div>
+        <div class="quarto-category">Microdata</div>
+      </div>
+  </div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jessie Bakens </p>
+             <p>Thomas de Graaff </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 2020</p>
+    </div>
+  </div>
   
     
   </div>
   
 
 
-</header>
+<div class="mt-4 d-flex flex-row flex-wrap gap-1 justify-content-left justify-content-sm-start" role="group" aria-label="Links">
+<a href="https://doi-org.vu-nl.idm.oclc.org/10.1093/jeg/lby062" class="btn btn-secondary text-capitalize"><i class="bi bi-file-richtext-fill me-1"></i> Publication</a>
+</div>
+
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#contribution" id="toc-contribution" class="nav-link" data-scroll-target="#contribution">Contribution</a></li>
+  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+<!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html -->
+<!-- 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title"> 
+-->
+<!-- <header id="title-block-header" class="quarto-title-block default page-columns"> -->
+<!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> -->
 
 
-<p>I am a <strong>spatial economist</strong> employed at the department of Spatial Economics of the Vrije Universiteit Amsterdam. My recent research focuses on <strong>spatial interaction</strong> patterns (e,g., tourism, trade, migration and commuting), <strong>reproducibility</strong> (e.g., meta-analysis) and the application of Bayesian <strong>multilevel</strong> models in the domain of spatial economics.</p>
-<!-- latest content information -->
-<div class="content-container">
-<div class="listing-block last-block">
-<!-- last-block to remove line below -->
-<section id="latest" class="level2">
-<h2 class="anchored" data-anchor-id="latest">Latest …</h2>
-<div id="listing-latest-content" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Crime,Urban development,Agglomeration economies,Amenity,New Zealand" data-listing-date-sort="1717192800000" data-listing-file-modified-sort="1715695842488" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="380">
-<a href="./research/articles/Donovan-2024-housing-economics/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="research/articles/Donovan-2024-housing-economics/featured.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-An urban overhead? Crime, agglomeration, and amenity
-</h5>
-<div class="card-text listing-description">
-<em>Journal of Housing Economics</em>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Stuart Donovan, Thomas de Graaff, Henri L. F. de Groot, Aaron Schiff
-</div>
-<div class="listing-date">
-Jun, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Agglomeration,Cities,Meta-analysis,Productivity,Urbanization" data-listing-date-sort="1704063600000" data-listing-file-modified-sort="1713515350665" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="166">
-<a href="./research/articles/donovan-2024/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="research/articles/donovan-2024/featured.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Unraveling urban advantages—A meta-analysis of agglomeration economies
-</h5>
-<div class="card-text listing-description">
-<em>Journal of Economic Surveys</em>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Stuart Donovan, Thomas de Graaff, Henri L. F. de Groot, Carl C. Koopman
-</div>
-<div class="listing-date">
-Jan, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="Regional economics,Predicting,Causality,Theory driven approach,Data science" data-listing-date-sort="1622844000000" data-listing-file-modified-sort="1715615376742" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="43" data-listing-word-count-sort="8600">
-<a href="./posts/post/research_agenda/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/post/research_agenda/featured.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Do regional economists answer the right questions?
-</h5>
-<div class="card-text listing-description">
-This position paper revolves around two main propositions; namely, (<em>i</em>) regional (or spatial) economists are very restrictive in the tool set they apply, and consequently…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Thomas de Graaff
-</div>
-<div class="listing-date">
-Jun, 2021
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="Teaching,Reproducability" data-listing-date-sort="1617314400000" data-listing-file-modified-sort="1715612865014" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="299">
-<a href="./posts/post/stated_choice/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/post/stated_choice/featured.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Stated choice experiments
-</h5>
-<div class="card-text listing-description">
-Some additional material for students to use a stated choice experiment
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Thomas de Graaff
-</div>
-<div class="listing-date">
-Apr, 2021
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="cultural heritage,European regions,multilevel gravity model,tourism flows" data-listing-date-sort="1612134000000" data-listing-file-modified-sort="1715696322984" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="595">
-<a href="./research/articles/Panzera-2021/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="research/articles/Panzera-2021/featured.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-European cultural heritage and tourism flows: The magnetic role of superstar World Heritage Sites
-</h5>
-<div class="card-text listing-description">
-<em>Papers in Regional Science</em>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Elisa Panzera, Thomas de Graaff, Henri L. F. de Groot
-</div>
-<div class="listing-date">
-Feb, 2021
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="Heterogeneity,Ethnic diversity,Valuation,Amenities,Microdata" data-listing-date-sort="1577833200000" data-listing-file-modified-sort="1715840247458" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="736">
-<a href="./research/articles/bakens-2020/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="research/articles/bakens-2020/featured.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Valuation of ethnic diversity: heterogeneous effects in an integrated labor and housing market
-</h5>
-<div class="card-text listing-description">
-We estimate the heterogeneous impact of the scale, composition and consumer good effect of ethnic diversity on individuals’ job and residential location. Using an extensive…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Jessie Bakens, Thomas de Graaff
-</div>
-<div class="listing-date">
-Jan, 2020
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
+
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>We estimate the heterogeneous impact of the scale, composition and consumer good effect of ethnic diversity on individuals’ job and residential location. Using an extensive pooled micro panel data set in which homeowners in the Netherlands are identified in both the housing and labor market, we can derive the combined effect of ethnic diversity in both markets. We test a model that integrates the utility and production function such that the location of work and residence is determined simultaneously by taking into account observed and unobserved heterogeneous individual behavior on both markets. We find that the scale of ethnic diversity, that is the share of immigrants, at the city level is mostly positively related to both wages and house prices. This is mainly through a positive productivity effect of immigrants, which results in negative implicit prices for housing (although small) in a city with a higher scale of ethnic diversity for the majority of the individuals in our data. The scale of ethnic diversity is only positively related to utility for a small group of homeowners, while the composition (diversity among immigrants) and the consumer good-effect (ethnic diversity of restaurants) of ethnic diversity show overall no significant effect on both markets nor significant implicit prices. Moreover, we find that the majority of Dutch homeowners do not sort themselves out over municipalities by their preferences for ethnic diversity.</p>
 </section>
+<section id="contribution" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="contribution">Contribution</h2>
+<p>The main contribution of our article to the literature is 3-fold. First, our approach overcomes the methodological issues inherent in most research on this topic that depends heavily on the specific subsample chosen or are focused on the ‘average’ effect. The latter issue is concerned with the fact that it is either assumed that all individuals benefit equally from ethnic diversity or that specific homogeneous groups of individuals are sampled to control for possible variation in the impacts (see, e.g.&nbsp;Florida, 2002; Ottaviano and Peri, 2005, 2006; Dalmazzo and de Blasio, 2011). The usual approach to account for possible heterogeneity in the effects is to use individual fixed effects. This approach controls for (un)observed individual characteristics that might determine differences in utility and preferences. However, it is precisely these (un)observed heterogeneous individual characteristics that play an important role in explaining the individual differences in wages and utility (Bakens et al., 2013). Thus, disregarding individual variation in characteristics by focusing on the average effects of ethnic diversity on wages and utility very likely provides a misguided view of the effects of ethnic diversity on specific population groups. By using a finite mixture model, no pre- determined samples of individuals need to be made, but effects can be estimated over different groups within the model. Although there is related research in which Ozgen and de Graaff (2013) and Nathan (2016) apply finite mixture models to analyze the effect of (ethnic) diversity on productivity and innovation, and Kemeny and Cooke (2018) analyze the effect of ethnic diversity on productivity along wage quartiles, we are not aware of other research that explores heterogeneous effects of population diversity on individual utility.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div id="fig-distinc" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-distinc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="featured.png" class="img-fluid figure-img">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-distinc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of income over (ethnic) amenity quartiles at the city level.
+</figcaption>
+</figure>
 </div>
+</div><div class="">
+<div id="fig-distrent" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-distrent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="rentdiv.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-distrent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Distribution of house prices (per square meter) over (ethnic) amenity quartiles at the city level.
+</figcaption>
+</figure>
+</div>
+</div></div>
+<p>Secondly, by using a theoretical framework based upon Roback (1982, 1988), we show that failing to account for unobserved heterogeneity simultaneously in both labor and housing markets results in biased estimates of the impacts of diversity on wages and utility. Our empirical analysis indeed shows that estimating wage and housing prices separately yield different results when compared with our simultaneous estimation.</p>
+<p>Finally, we employ an extensive micro dataset consisting of a pooled cross-section of administrative income and housing data between 1998 and 2008 in the Netherlands. This data focus on homeowners in the labor and the housing market. The micro-data allow a simultaneous estimation of an individual’s correlated choice of location of living and work and we explicitly allow individuals to work and live in different cities. Relaxing the assumption that the amenity endowment in the area of work is equal to that of the area of residence accommodates the empirical setting in many countries, especially in the Netherlands, where half of the workers do not live in the same municipality in which they work. Because we use a pooled cross-section instead of panel data, this article is focused more on estimating possible heterogeneity in correlations for different individuals than on causal effects.</p>
+</section>
+<section id="citation" class="level2">
+<h2 class="anchored" data-anchor-id="citation">Citation</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">bakens2020valuation</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={Valuation of ethnic diversity: Heterogeneous effects in an integrated labor and housing market},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Bakens, Jessie and De Graaff, Thomas},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Journal of Economic Geography},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span>={20},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span>={1},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>={197--223},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2020},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={Oxford University Press}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -786,7 +695,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="./licence/license.html">
+    <a class="nav-link" href="../../../licence/license.html">
 <p>License</p>
 </a>
   </li>  

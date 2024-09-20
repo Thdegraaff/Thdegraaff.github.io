@@ -1,0 +1,34 @@
+---
+title: "Welfare effects of road pricing and traffic information under alternative ownership regimes"
+date: 2012-10-01
+author: 
+    - Sergejs Gubins
+    - Erik T. Verhoef
+    - Thomas de Graaff"
+publication: "*Transportation Research Part A: Policy and Practice*"
+categories: 
+    - Willingness to pay for information
+    - Private road operator
+    - Private information provider
+    - ICT
+description: "*Transportation Research A*"
+abstract: ''
+links:
+  - icon: file-richtext-fill
+    name: Publication
+    url: https://doi.org/10.1007/s00168-018-0893-2
+---
+
+## Abstract
+
+This paper models strategic interactions between a road supplier, a provider of traffic information, and road users, with stochastic travel times. Using a game-theoretical analysis of
+suppliers’ pricing strategies, we assess the social welfare effects of traffic information
+under various ownership regimes. The results show that the distortive welfare effect of
+monopolistic information pricing appears relatively small. Collusion of the road operator
+and information provider yields higher social welfare than independent pricing by two
+firms. The intuition behind this result resembles that behind the welfare effects of double
+marginalization, but is not exactly the same, as traffic information is not strictly complementary to road use.
+
+## Illustrative example of reaction functions
+
+![ Possible reaction functions of an information provider and a road operator.](featured.png)

@@ -2350,6 +2350,742 @@ for Education in the Social Sciences.”</span> August 12, 2017. <a href="http:/
   <pubDate>Fri, 11 Aug 2017 22:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>Drawing Edgeworth boxes with LaTeX</title>
+  <dc:creator>Thomas de Graaff</dc:creator>
+  <link>http://thomasdegraaff.nl/posts/post/edgeworth/</link>
+  <description><![CDATA[ 
+
+<!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html -->
+<!-- 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title"> 
+-->
+<!-- <header id="title-block-header" class="quarto-title-block default page-columns"> -->
+<!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> -->
+
+
+
+<section id="factor-mobility-and-welfare" class="level2">
+<h2 class="anchored" data-anchor-id="factor-mobility-and-welfare">Factor mobility and welfare</h2>
+<p>For educational purposes we teach in the second year’s course <em>regional and urban economics</em> students the Edgeworth-Bowley box. At first sight the concept is quite simple, but because there are restrictions for the total amount of both labour and capital in both regions or countries, the intuition behind the model and especially the drawing of the box is rather complex. Therefore, I once wrote a straightforward but elaborate LaTeX script invoking the Tikz package.</p>
+<p>The setting is as follows. We consider two regions, <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B">. The productionfunction of <img src="https://latex.codecogs.com/png.latex?A"> is <img src="https://latex.codecogs.com/png.latex?Y_A%20=%20K_A%5E%7B0.2%7DL_A%5E%7B0.8%7D"> and the productionfunction of <img src="https://latex.codecogs.com/png.latex?B"> is <img src="https://latex.codecogs.com/png.latex?Y_B%20=%20K_B%5E%7B0.6%7DL_B%5E%7B0.4%7D">. In the initial situation is the amount of capital in both regions equal to 1 (<img src="https://latex.codecogs.com/png.latex?K_A%20=%20K_B%20=%201">). The amount of labour is as well in both regions in the initial situation equal to 1 (<img src="https://latex.codecogs.com/png.latex?L_A%20=%20L_B%20=%201">). The next script shows how to draw an Edgeworth-Bowley box in <img src="https://latex.codecogs.com/png.latex?%5CLaTeX">.</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Edgeworth box---Optimal allocation of inputs for two economies</span></span>
+<span id="cb1-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Author: Thomas de Graaff</span></span>
+<span id="cb1-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\documentclass</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">article</span>} </span>
+<span id="cb1-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\usepackage</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tikz, verbatim</span>}</span>
+<span id="cb1-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\usepackage</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pgfplots</span>}   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%include other needed packages here    </span></span>
+<span id="cb1-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">\usepackage</span>[active,tightpage]{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">preview</span>}</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\PreviewEnvironment</span>{tikzpicture}</span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\setlength\PreviewBorder</span>{0pt}<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span></span>
+<span id="cb1-9"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">comment</span>}</span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:Title: Edgeworth box---Optimal allocation of inputs for two economies</span></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:Tags: pgfplots, economics</span></span>
+<span id="cb1-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:Author: Thomas de Graaff</span></span>
+<span id="cb1-13"></span>
+<span id="cb1-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">This edgeworth box describes the optimal allocation (pareto efficient) of inputs for the Cobb-Douglas production functions of two countries/regions (A and B). In addition, it shows the initial endowments of inputs and the resulting area of patero improvements. Parameters that can be changes: capital intensity parameter region A/B, total amount of labour and capital in A and B, and initial endowment K and L in A.</span></span>
+<span id="cb1-15"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">comment</span>}</span>
+<span id="cb1-16"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">document</span>}   </span>
+<span id="cb1-17"></span>
+<span id="cb1-18"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tikzpicture</span>}[scale=1,thick]</span>
+<span id="cb1-19"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\usetikzlibrary</span>{calc, intersections}           <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%allows coordinate calculations.</span></span>
+<span id="cb1-20"></span>
+<span id="cb1-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Define parameters</span></span>
+<span id="cb1-22"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\alpha</span>{0.2}     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Capital intensity parameter for region A.</span></span>
+<span id="cb1-23"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\beta</span>{0.6}      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Capital intensity parameter for region B.</span></span>
+<span id="cb1-24"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\L</span>{2}       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Total amount of labour in economy.</span></span>
+<span id="cb1-25"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\K</span>{2}       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Total amount of capital in economy.</span></span>
+<span id="cb1-26"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\PK</span>{0.5}        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Share K in A in initial endowment.</span></span>
+<span id="cb1-27"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\PL</span>{0.5}        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Share L in A in initial endowment.</span></span>
+<span id="cb1-28"></span>
+<span id="cb1-29"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Define isoquants</span></span>
+<span id="cb1-30"></span>
+<span id="cb1-31"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\TotalY</span>{(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))}</span>
+<span id="cb1-32"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\InitYA</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\PL*\L</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\PK*\K</span>)^(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))}      </span>
+<span id="cb1-33"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\InitYB</span>{(((1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\PL</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>))*(((1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\PK</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>)^(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>))}</span>
+<span id="cb1-34"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\InitYAfromB</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\TotalY</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\InitYB</span>}   </span>
+<span id="cb1-35"></span>
+<span id="cb1-36"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\La</span>{0.2*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>}</span>
+<span id="cb1-37"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\Lb</span>{0.4*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>}</span>
+<span id="cb1-38"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\Lc</span>{0.6*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>}</span>
+<span id="cb1-39"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\Ld</span>{0.8*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>}</span>
+<span id="cb1-40"></span>
+<span id="cb1-41"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\Ka</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K*\La</span>/((1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta*</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\La</span>)+<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\La</span>)}</span>
+<span id="cb1-42"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\Kb</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K*\Lb</span>/((1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta*</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Lb</span>)+<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Lb</span>)}</span>
+<span id="cb1-43"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\Kc</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K*\Lc</span>/((1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta*</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Lc</span>)+<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Lc</span>)}</span>
+<span id="cb1-44"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\Kd</span>{<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K*\Ld</span>/((1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta*</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Ld</span>)+<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Ld</span>)}</span>
+<span id="cb1-45"></span>
+<span id="cb1-46"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\YAa</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\La</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Ka</span>)^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)}</span>
+<span id="cb1-47"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\YAb</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Lb</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Kb</span>)^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)}</span>
+<span id="cb1-48"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\YAc</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Lc</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Kc</span>)^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)}</span>
+<span id="cb1-49"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\YAd</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Ld</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Kd</span>)^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)}</span>
+<span id="cb1-50"></span>
+<span id="cb1-51"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\YBa</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\La</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Ka</span>)^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)}</span>
+<span id="cb1-52"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\YBb</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Lb</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Kb</span>)^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)}</span>
+<span id="cb1-53"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\YBc</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Lc</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Kc</span>)^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)}</span>
+<span id="cb1-54"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\YBd</span>{((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Ld</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*((<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\Kd</span>)^<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)}</span>
+<span id="cb1-55"></span>
+<span id="cb1-56"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">axis</span>}[</span>
+<span id="cb1-57">        restrict y to domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>,</span>
+<span id="cb1-58">        samples = 1000,             </span>
+<span id="cb1-59">        xmin = 0, xmax = <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>,</span>
+<span id="cb1-60">        ymin = 0, ymax = <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>,</span>
+<span id="cb1-61">        xlabel=<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$L_A$</span>,</span>
+<span id="cb1-62">        ylabel=<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$K_A$</span>,</span>
+<span id="cb1-63">        axis y line=left,</span>
+<span id="cb1-64">        axis x line=bottom,</span>
+<span id="cb1-65">        y axis line style={-}, </span>
+<span id="cb1-66">        x axis line style={-}</span>
+<span id="cb1-67">        ]</span>
+<span id="cb1-68">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\LineA</span>{(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\InitYA</span>/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))};</span>
+<span id="cb1-69">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\LineB</span> {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\InitYB</span>/(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)};</span>
+<span id="cb1-70">        <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\def\LineAfromB</span>{(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\InitYAfromB</span>/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))};</span>
+<span id="cb1-71">            </span>
+<span id="cb1-72"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% color the area with all pareto improvements           </span></span>
+<span id="cb1-73">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span> [fill=orange!40, opacity=0.5, draw=none,domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\LineB</span>} <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\closedcycle</span>;</span>
+<span id="cb1-74">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span> [fill=white, draw=none,domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\LineA</span>} |- (axis cs:0,0) -- (axis cs:0,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>)--cycle; </span>
+<span id="cb1-75">                </span>
+<span id="cb1-76">      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%Draw isoquants</span></span>
+<span id="cb1-77">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thin, dotted, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\YAa</span>/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)};</span>
+<span id="cb1-78">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thin, dotted, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\YAb</span>/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)};</span>
+<span id="cb1-79">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thick, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\LineA</span>};     </span>
+<span id="cb1-80">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thin, dotted, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\YAc</span>/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)};</span>
+<span id="cb1-81">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thin, dotted, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\YAd</span>/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)};</span>
+<span id="cb1-82">   </span>
+<span id="cb1-83">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thin, dotted, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\YBa</span>/(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)};</span>
+<span id="cb1-84">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thin, dotted, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\YBb</span>/(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)};</span>
+<span id="cb1-85">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thick, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\LineB</span>};</span>
+<span id="cb1-86">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thin, dotted, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\YBc</span>/(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)};</span>
+<span id="cb1-87">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thin, dotted, mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>] {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>-(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\YBd</span>/(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>)^(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>))^(1/<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)};</span>
+<span id="cb1-88">      </span>
+<span id="cb1-89">      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%Draw contractcurve</span></span>
+<span id="cb1-90">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[mark=none, domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>, color=blue,thick]    {<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K*\x</span>/((1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta*</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>)+<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\alpha*</span>(1-<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\beta</span>)*<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\x</span>)};</span>
+<span id="cb1-91">      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%Draw initial endowments</span></span>
+<span id="cb1-92">     <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\addplot</span>[thick, mark=*, fill=red!50] coordinates {(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L*\PL</span>,<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K*\PK</span>)};</span>
+<span id="cb1-93"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">axis</span>}</span>
+<span id="cb1-94"></span>
+<span id="cb1-95"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">% Draw mirrored axis</span></span>
+<span id="cb1-96"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\begin</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">axis</span>}[</span>
+<span id="cb1-97">        restrict y to domain=0:<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>,</span>
+<span id="cb1-98">        minor tick num=1,</span>
+<span id="cb1-99">        xlabel=<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$L_B$</span>,</span>
+<span id="cb1-100">        ylabel=<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$K_B$</span>,</span>
+<span id="cb1-101">        xmin = 0, xmax = <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\L</span>,</span>
+<span id="cb1-102">        ymin = 0, ymax = <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">\K</span>,</span>
+<span id="cb1-103">        axis y line=right, </span>
+<span id="cb1-104">        axis x line=top,</span>
+<span id="cb1-105">        x dir=reverse,</span>
+<span id="cb1-106">        y dir=reverse,</span>
+<span id="cb1-107">        y axis line style={-}, </span>
+<span id="cb1-108">        x axis line style={-}</span>
+<span id="cb1-109">        ]</span>
+<span id="cb1-110"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">axis</span>}</span>
+<span id="cb1-111"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">tikzpicture</span>}</span>
+<span id="cb1-112"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">\end</span>{<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">document</span>} </span></code></pre></div>
+<p>This produces the following diagram:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="http://thomasdegraaff.nl/posts/post/edgeworth/featured.png" class="img-fluid figure-img"></p>
+<figcaption>The Edgeworth-Bowley box and the corresponding Pareto improving area</figcaption>
+</figure>
+</div>
+<p>Clearly, the initial situation (1,1) is not efficient and both regions can increase their welfare by <em>both</em> migrating capital and labour. Labour will move from <img src="https://latex.codecogs.com/png.latex?B"> to <img src="https://latex.codecogs.com/png.latex?A"> and capital will move from <img src="https://latex.codecogs.com/png.latex?A"> to <img src="https://latex.codecogs.com/png.latex?B">. Note that the light grey area (should be light orange) area denotes the area with all pareto improvements.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-de graaff2015" class="csl-entry quarto-appendix-citeas">
+Graaff, Thomas de. 2015. <span>“Drawing Edgeworth Boxes with
+LaTeX.”</span> November 25, 2015. <a href="http://thomasdegraaff.nl//posts/post/edgeworth">http://thomasdegraaff.nl//posts/post/edgeworth</a>.
+</div></div></section></div> ]]></description>
+  <category>Interaction</category>
+  <category>LaTeX</category>
+  <category>Education</category>
+  <guid>http://thomasdegraaff.nl/posts/post/edgeworth/</guid>
+  <pubDate>Tue, 24 Nov 2015 23:00:00 GMT</pubDate>
+</item>
+<item>
   <title>Krugman’s Increasing Returns and Economic Geography</title>
   <dc:creator>Thomas de Graaff</dc:creator>
   <link>http://thomasdegraaff.nl/posts/post/krugman_neg/</link>

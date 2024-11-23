@@ -6,10 +6,10 @@ author:
 - Thomas de Graaff
 - Henri L. F. de Groot
 categories:
-  - cultural heritage
+  - Cultural heritage
   - European regions
-  - multilevel gravity model
-  - tourism flows
+  - Multilevel gravity model
+  - Tourism flows
 description: "*Papers in Regional Science*"
 abstract: ''
 links:

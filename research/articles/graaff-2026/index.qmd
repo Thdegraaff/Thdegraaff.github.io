@@ -1,0 +1,36 @@
+---
+title: "Unraveling urban advantages—A meta-analysis of agglomeration economies"
+date: 2026-05-04
+date-format: MMM, YYYY
+author: 
+- Thomas de Graaff
+- Elisa Panzera
+- Henri L. F. de Groot
+categories:
+  - Meta-analysis
+  - Tourism flows
+  - Distance decay
+  - Gravity models   
+description: "*Annals of Tourism Research*"
+abstract: ''
+links:
+  - icon: file-richtext-fill
+    name: Publication
+    url: https://authors.elsevier.com/sd/article/S0160-7383(26)00080-0
+---
+
+## Abstract
+
+This meta-analysis summarizes and explains the variation in the deterring effect of distance on tourism flows by analyzing 870 estimates from 138 primary studies utilizing data covering the last 25 years. We find substantial heterogeneity among studies that mostly correlates with (unobserved) study characteristics, estimation methods, and locations of origin and destination included in the primary studies. We confirm previous findings that the mean total distance decay effect, using preferred methods and datastructures, is close to unit elasticity in absolute value (-0.93). However, when controlling for mediator variables, we find that the direct, physical, distance decay effect is significantly lower (-0.74). This distance decay effect is remarkably stable over the last 25 years and reveals a positive relation between distance and the total number of tourists.
+
+## Graphical abstract
+
+![](graphical_abstract.png){width=100%}
+
+## Main findings
+
+We find a couple of interesting things. First of all, the 
+
+![Alternative generative models with the variable Island controlling for unobserved heterogeneity (left panel) and the possible presence of unobserved confounders (U, V, W) in a causal mediation framework (right panel).](dag_2.png){width=100%}
+
+![Constant effect sizes over time for both international and domestic tourism](featured.png)

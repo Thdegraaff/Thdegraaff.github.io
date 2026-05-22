@@ -2,6 +2,7 @@
   {
     "listing": "/research/index.html",
     "items": [
+      "/research/articles/graaff-2026/index.html",
       "/research/articles/Donovan-2024-housing-economics/index.html",
       "/research/articles/donovan-2024/index.html",
       "/research/articles/Panzera-2021/index.html",
@@ -27,6 +28,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/research/articles/graaff-2026/index.html",
       "/research/articles/Donovan-2024-housing-economics/index.html",
       "/research/articles/donovan-2024/index.html",
       "/posts/post/research_agenda/index.html",

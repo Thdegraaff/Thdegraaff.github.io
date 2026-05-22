@@ -29,7 +29,7 @@ This meta-analysis summarizes and explains the variation in the deterring effect
 
 ## Main findings
 
-We find a couple of interesting things. First of all, the 
+This meta-analysis has some intriguing, well, in our eyes, elements. First, we provide a micro-economics framework for tourism flows 
 
 ![Alternative generative models with the variable Island controlling for unobserved heterogeneity (left panel) and the possible presence of unobserved confounders (U, V, W) in a causal mediation framework (right panel).](dag_2.png){width=100%}
 

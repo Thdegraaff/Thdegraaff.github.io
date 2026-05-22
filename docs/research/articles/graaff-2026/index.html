@@ -24,7 +24,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -75,6 +95,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -202,28 +251,60 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="graphical-abstract" class="level2">
 <h2 class="anchored" data-anchor-id="graphical-abstract">Graphical abstract</h2>
-<p><img src="graphical_abstract.png" class="img-fluid" style="width:100.0%"></p>
+<div id="fig-ga" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphical_abstract.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Graphical abstract of our paper
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="main-findings" class="level2">
 <h2 class="anchored" data-anchor-id="main-findings">Main findings</h2>
-<p>We find a couple of interesting things. First of all, the</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="dag_2.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Alternative generative models with the variable Island controlling for unobserved heterogeneity (left panel) and the possible presence of unobserved confounders (U, V, W) in a causal mediation framework (right panel).</figcaption>
+<p>This meta-analysis has some intriguing, well, in our eyes, elements. First, we provide a micro-economics framework for tourism flows (although only online accessible in the online appendix). Second, we argue that additional covariates in our meta-analysis, such as controlling for islands and world heritage sites, act as mediators. Again, in our online appendix, we provide a causal framework (and the needed assumptions) for this. See the two directed acyclical graphs in <a href="#fig-dag2" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<p>First, we specifically state the assumptions needed for a mediating framework. Adopting the general framework of <span class="citation" data-cites="pearl2009causality">Pearl (<a href="#ref-pearl2009causality" role="doc-biblioref">2009</a>)</span> three possible mechanisms of confounding for causal identification may arise: mediation bias, unobserved heterogeneity bias, and collider bias. We argue in Figure 1 in the paper for the presence of mediation bias. Controlling for possible unobserved heterogeneity bias, as often is given as the rationale in meta-analyses to include other variables, is presented in the left panel of <a href="#fig-dag2" class="quarto-xref">Figure&nbsp;2</a>. The right panel of <a href="#fig-dag2" class="quarto-xref">Figure&nbsp;2</a> depicts the general presence of unobservables where especially the unobserved confounding factor U is problematic as it leads to collider bias as controlling for, in this case, the variable ‘Island’ opens up the ‘path’ for U <span class="citation" data-cites="celli2022causal">(see for an extensive treatment <a href="#ref-celli2022causal" role="doc-biblioref">Celli 2022</a>)</span>.</p>
+<p>In the paper we assume that distance itself is not influenced by other factors—arguably, a weak assumption. This implies that the setting in the left panel of <a href="#fig-dag2" class="quarto-xref">Figure&nbsp;2</a> is not applicable for our case and unobservables (V, W) do not play a role in the right panel of <a href="#fig-dag2" class="quarto-xref">Figure&nbsp;2</a>. Unfortunately, we cannot rule out the possible impact of U. For a possible claim of a mediation framework we have to make the assumption that U does not impact the mediation variable (or <span class="math inline">\(\text{U} \perp \text{`Island'}\)</span>). For the variable ‘Island’ and when controlling for regional variables, as we do, this is not a strong assumption. However, for more socio-economic variables, such as ‘Exchange rate’ and ‘Regional trade agreement’ these are much stronger assumptions. Note, that our empirical results align with these assumptions. Namely, adding more variables does not increase out-of-sample model performance.</p>
+<div id="fig-dag2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="dag_2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Alternative generative models with the variable Island controlling for unobserved heterogeneity (left panel) and the possible presence of unobserved confounders (U, V, W) in a causal mediation framework (right panel).
+</figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="featured.png" class="img-fluid figure-img"></p>
-<figcaption>Constant effect sizes over time for both international and domestic tourism</figcaption>
+<p>A second finding is that the distance decay does not seem to change over time, neither for international of domestic tourism, which to a certain extent contradicts <span class="citation" data-cites="rossello2024toward">Rosselló-Nadal and Santana-Gallego (<a href="#ref-rossello2024toward" role="doc-biblioref">2024</a>)</span>.</p>
+<div id="fig-time" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="featured.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Constant effect sizes over time for both international and domestic tourism
+</figcaption>
 </figure>
 </div>
+<p>Third and finally, as can be seen in our graphical abstract <a href="#fig-ga" class="quarto-xref">Figure&nbsp;1</a>, the fact that we find an inelastic distance decay states that there is a positive relation between distance and the total number of tourists (so with constant distance decays over times). With rising income levels across the world, this might serious (environmental) consequences</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-celli2022causal" class="csl-entry" role="listitem">
+Celli, Viviana. 2022. <span>“Causal Mediation Analysis in Economics: <span>Objectives</span>, Assumptions, Models.”</span> <em>Journal of Economic Surveys</em> 36 (1): 214–34.
+</div>
+<div id="ref-pearl2009causality" class="csl-entry" role="listitem">
+Pearl, Judea. 2009. <em>Causality</em>. Cambridge University Press.
+</div>
+<div id="ref-rossello2024toward" class="csl-entry" role="listitem">
+Rosselló-Nadal, Jaume, and Marı́a Santana-Gallego. 2024. <span>“Toward a Smaller World. <span>The</span> Distance Puzzle and International Border for Tourism.”</span> <em>Journal of Transport Geography</em> 115: 103809.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

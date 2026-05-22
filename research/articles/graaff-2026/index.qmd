@@ -25,12 +25,20 @@ This meta-analysis summarizes and explains the variation in the deterring effect
 
 ## Graphical abstract
 
-![](graphical_abstract.png){width=100%}
+![Graphical abstract of our paper](graphical_abstract.png){#fig-ga width=100%}
 
 ## Main findings
 
-This meta-analysis has some intriguing, well, in our eyes, elements. First, we provide a micro-economics framework for tourism flows 
+This meta-analysis has some intriguing, well, in our eyes, elements. First, we provide a micro-economics framework for tourism flows (although only online accessible in the online appendix). Second, we argue that additional covariates in our meta-analysis, such as controlling for islands and world heritage sites, act as mediators. Again, in our online appendix, we provide a causal framework (and the needed assumptions) for this. See the two directed acyclical graphs in @fig-dag2. 
 
-![Alternative generative models with the variable Island controlling for unobserved heterogeneity (left panel) and the possible presence of unobserved confounders (U, V, W) in a causal mediation framework (right panel).](dag_2.png){width=100%}
+First, we specifically state the assumptions needed for a mediating framework. Adopting the general framework of @pearl2009causality three possible mechanisms of confounding for causal identification may arise: mediation bias, unobserved heterogeneity bias, and collider bias. We argue in Figure 1 in the paper for the presence of mediation bias.\footnote{\,Depending on whether you want to measure a direct, indirect or total effect, the bias may occur.} Controlling for possible unobserved heterogeneity bias, as often is given as the rationale in meta-analyses to include other variables, is presented in the left panel of @fig-dag2. The right panel of @fig-dag2 depicts the general presence of unobservables where especially the unobserved confounding factor U is problematic as it leads to collider bias as controlling for, in this case, the variable 'Island' opens up the 'path' for U [see for an extensive treatment @celli2022causal]. 
 
-![Constant effect sizes over time for both international and domestic tourism](featured.png)
+In the paper we assume that distance itself is not influenced by other factors---arguably, a weak assumption. This implies that the setting in the left panel of @fig-dag2 is not applicable for our case and unobservables (V, W) do not play a role in the right panel of @fig-dag2. Unfortunately, we cannot rule out the possible impact of U. For a possible claim of a mediation framework we have to make the assumption that U does not impact the mediation variable (or $\text{U} \perp \text{`Island'}$). For the variable 'Island' and when controlling for regional variables, as we do, this is not a strong assumption. However, for more socio-economic variables, such as 'Exchange rate' and 'Regional trade agreement' these are much stronger assumptions. Note, that our empirical results align with these assumptions. Namely, adding more variables does not increase out-of-sample model performance.
+
+![Alternative generative models with the variable Island controlling for unobserved heterogeneity (left panel) and the possible presence of unobserved confounders (U, V, W) in a causal mediation framework (right panel).](dag_2.png){#fig-dag2 width=100%}
+
+A second finding is that the distance decay does not seem to change over time, neither for international of domestic tourism, which to a certain extent contradicts @rossello2024toward. 
+
+![Constant effect sizes over time for both international and domestic tourism](featured.png){#fig-time width=100%}
+
+Third and finally, as can be seen in our graphical abstract [@fig-ga], the fact that we find an inelastic distance decay states that there is a positive relation between distance and the total number of tourists (so with constant distance decays over times). With rising income levels across the world, this might serious (environmental) consequences

@@ -51,7 +51,7 @@ In his controversial and path-breaking article, @breiman2001statistical presente
 
 ![Data approach](dataapproach.png){#fig-data}
 
-Two cultures of statistical/econometric modeling [Insipired by @breiman2001statistical]
+Two cultures of statistical/econometric modeling [Inspired by @breiman2001statistical]
 :::
 
 @fig-approaches is an adaptation from the one displayed in @breiman2001statistical and describes the processes governing these two

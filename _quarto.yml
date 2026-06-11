@@ -32,7 +32,7 @@ website:
   page-footer:
     border: false
     left: >-
-      &#169; 2014--2024 Thomas de Graaff &#8729; Made with [Quarto](https://quarto.org)
+      &#169; 2014--2026 Thomas de Graaff &#8729; Made with [Quarto](https://quarto.org)
     center: |
       <a class="link-dark me-1" href="https://github.com/thdegraaff" title="github" target="_blank" rel="noopener">{{< fa brands github >}}</a>
       <a class="link-dark me-1" href="https://orcid.org/0000-0002-1782-9742" title="orcid" target="_blank" rel="noopener">{{< ai orcid >}}</a>

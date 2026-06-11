@@ -1,5 +1,5 @@
 ---
-title: "Unraveling urban advantages—A meta-analysis of agglomeration economies"
+title: "Going the distance? A meta-analysis of the deterring effect of distance in tourism"
 date: 2026-05-04
 date-format: MMM, YYYY
 author: 

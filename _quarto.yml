@@ -67,8 +67,8 @@ format:
 #     pagetitle: "{{< meta title >}} | Thomas de Graaff"
 # 
 
-execute:
-  freeze: auto
+# execute:
+#   freeze: auto
   
 bibliography: references.bib
 # 
